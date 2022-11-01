@@ -70,6 +70,11 @@ def help():
     """
 ```
 
+# Principles:
+
+* Physical-based rendering (PBR) as the standard standard aesthetic
+* HTTPS, WebSocket, WebRTC agnostic but REST conforming
+* JWT is identity
 
 ## Vision
 
