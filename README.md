@@ -68,3 +68,24 @@ def help():
       </mv-object>
     """
 ```
+
+
+## Vision
+
+### chessboard 
+
+```
+<html>
+  <head>
+    <title>Metaverse</title>
+    <script src="https://unpkg.com/vrmx/dist/vrmx.js"></script>
+  </head>
+    
+  <!-- create an anchor point about 3 meters for a chess board
+  you play with your friend -->  
+  <mv-space anchor="help" preferred-distance="3">
+    <mv-object post="https://friendchess/darryl/board/23vsxvb" trigger="load" swap="self"></mv-object>
+  </mv-space>
+    
+</html>
+```
