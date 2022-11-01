@@ -1,6 +1,6 @@
 # vrmx - a hypertext for the metaverse
 
-Inspired by [VRML](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe.io/), and [htmx](https://htmx.org/), VRMX is a hypertext for building interactable server-generated metaverses.
+Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe.io/), and [htmx](https://htmx.org/), `vrmx` is a hypertext for building interactable server-generated metaverses.
 
 ```html
 <html>
