@@ -9,8 +9,8 @@ Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe
     <script src="https://unpkg.com/vrmx/dist/vrmx.js"></script>
   </head>
   <mv-space plane="ground" preferred-distance="3">
-    <mv-object post="/hat-touched" src="hat.gltf" swap="self"></mv-object>
-    <mv-object y="-.025">
+    <mv-object y="1" post="/hat-touched" src="hat.gltf" swap="self"></mv-object>
+    <mv-object y=".025">
       <geo-box widght="1" height=".05" depth="1">
       <mat-std color="brown">
     <mv-object>
@@ -22,7 +22,7 @@ Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe
     </mv-object>
   </mv-space>
   <mv-space anchor="help" preferred-distance="3">
-    <mv-object post="/help" src="question_mark.gltf" swap="self"></mv-object>
+    <mv-object y="2" post="/help" src="question_mark.gltf" swap="self"></mv-object>
   </mv-space>
 </html>
 ```
