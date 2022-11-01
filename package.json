@@ -1,5 +1,6 @@
 {
   "name": "vrmx",
+  "description": "A hypertext for the metaverse",
   "version": "0.0.0",
   "type": "module",
   "main": "dist/my-element.es.js",
