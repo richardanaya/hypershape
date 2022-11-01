@@ -11,5 +11,5 @@ Inspired by [VRML](https://en.wikipedia.org/wiki/VRML) and [HTMX](https://htmx.o
 ```python
 @app.get("/hat-touched")
 def hat_touched():
-    return `<mv-object src="rabit.gltf">`
+    return '<mv-object src="rabit.gltf">'
 ```
