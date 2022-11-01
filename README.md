@@ -8,13 +8,22 @@ Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe
     <title>Metaverse</title>
     <script src="https://unpkg.com/vrmx/dist/vrmx.js"></script>
   </head>
-  <mv-world>
-    <mv-object post="/hat-touched" src="hat.gltf" swap="self">
+  <mv-space plane="ground">
+    <mv-object post="/hat-touched" src="hat.gltf" swap="self"></mv-object>
     <mv-object y="-.025">
       <geo-box widght="1" height=".05" depth="1">
       <mat-std color="brown">
     <mv-object>
-  </mv-world>
+  </mv-space>
+  <mv-space plane="wall">
+    <mv-object>
+      <geo-text>Touch Hat</geo-text>
+      <mat-std color="white">
+    </mv-object>
+  </mv-space>
+  <mv-space anchor="help" preferred-distance="3">
+    <mv-object post="/help" src="question_mark.gltf" swap="self"></mv-object>
+  </mv-space>
 </html>
 ```
 
@@ -22,4 +31,21 @@ Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe
 @app.post("/hat-touched")
 def hat_touched():
     return '<mv-object src="rabit.gltf">'
+    
+@app.post("/hat-touched")
+def hat_touched():
+    return """
+      <mv-object y="1">
+        <geo-text>Welcome to a metaverse made with vrmx</geo-text>
+        <mat-std color="white">
+      </mv-object>
+      <mv-object>
+        <geo-text>for more infomation go to</geo-text>
+        <mat-std color="white">
+      </mv-object>
+      <mv-object y="-1" href="https://github.com/richardanaya/vrml">
+        <geo-text>https://github.com/richardanaya/vrm</geo-text>
+        <mat-std color="blue">
+      </mv-object>
+    """
 ```
