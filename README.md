@@ -74,7 +74,7 @@ def help():
 
 * Physical-based rendering (PBR) as the standard standard aesthetic
 * HTTPS, WebSocket, WebRTC agnostic but REST conforming
-* JWT is metaverse avatar identity
+* JWT is metaverse avatar identity ( See [JAT]() )
 
 ## Vision
 
@@ -96,3 +96,5 @@ def help():
     
 </html>
 ```
+
+#### JSON Avatar Token (JAT)
