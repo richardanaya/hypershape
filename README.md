@@ -74,7 +74,7 @@ def help():
 
 ### chessboard 
 
-```
+```html
 <html>
   <head>
     <title>Metaverse</title>
