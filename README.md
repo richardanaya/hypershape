@@ -83,7 +83,7 @@ def help():
     
   <!-- create an anchor point about 3 meters for a chess board
   you play with your friend -->  
-  <mv-space anchor="help" preferred-distance="3">
+  <mv-space anchor="game_table" preferred-distance="3">
     <mv-object post="https://friendchess/darryl/board/23vsxvb" trigger="load" swap="self"></mv-object>
   </mv-space>
     
