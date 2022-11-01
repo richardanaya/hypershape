@@ -2,9 +2,10 @@
 
 Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe.io/), and [htmx](https://htmx.org/) — vrmx is a [hypertext](https://en.wikipedia.org/wiki/Hypertext) for building an interactable server-generated [metaverse](https://en.wikipedia.org/wiki/Metaverse).
 
-<center>
-<img width="400" alt="Screen Shot 2022-10-31 at 7 24 40 PM" src="https://user-images.githubusercontent.com/294042/199145023-68813375-c10a-4397-bb05-176b6ff736b0.png">
-</center>
+<p align="center">
+<img width="830" alt="Screen Shot 2022-10-31 at 7 24 40 PM" src="https://user-images.githubusercontent.com/294042/199145684-134238ec-e71b-4ad0-8316-3418fda02a5f.png">
+</p>
+
 
 ```html
 <html>
