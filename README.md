@@ -5,7 +5,7 @@ Inspired by [VRML](https://en.wikipedia.org/wiki/VRML) and [htmx](https://htmx.o
 ```html
 <html>
   <head>
-    <title>My World</title>
+    <title>Metaverse</title>
     <script src="https://unpkg.com/vrmx/dist/index.js"></script>
   </head>
   <mv-world>
