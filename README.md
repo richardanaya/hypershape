@@ -8,6 +8,10 @@ Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe
     <title>Metaverse</title>
     <script src="https://unpkg.com/vrmx/dist/vrmx.js"></script>
   </head>
+  
+  <!-- on the nearest detected ground plane with origin 
+  about 3 meters away create a brown table-shaped box 
+  with a hat floating above it -->
   <mv-space plane="ground" preferred-distance="3">
     <mv-object y="1" post="/hat-touched" src="hat.gltf" swap="self"></mv-object>
     <mv-object y=".025">
@@ -15,15 +19,21 @@ Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe
       <mat-std color="brown">
     <mv-object>
   </mv-space>
+        
+  <!-- on the nearest detected wall plane create some 
+  text to instruct the user what to do -->
   <mv-space plane="wall">
     <mv-object>
       <geo-text>Touch the hat below</geo-text>
       <mat-std color="white">
     </mv-object>
   </mv-space>
+    
+  <!-- on and anchor point about 3 meters away create a help icon -->  
   <mv-space anchor="help" preferred-distance="3">
     <mv-object y="2" post="/help" src="question_mark.gltf" swap="self"></mv-object>
   </mv-space>
+    
 </html>
 ```
 
