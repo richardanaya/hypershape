@@ -12,7 +12,7 @@ Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe
 ```html
 <html>
   <head>
-    <title>Metaverse</title>
+    <title>Living Room Metaverse</title>
     <script src="https://unpkg.com/vrmx/dist/vrmx.js"></script>
   </head>
   
@@ -77,7 +77,7 @@ def help():
 ```html
 <html>
   <head>
-    <title>Metaverse</title>
+    <title>Office Metaverse</title>
     <script src="https://unpkg.com/vrmx/dist/vrmx.js"></script>
   </head>
     
