@@ -15,7 +15,7 @@ Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe
 ```
 
 ```python
-@app.get("/hat-touched")
+@app.post("/hat-touched")
 def hat_touched():
     return '<mv-object src="rabit.gltf">'
 ```
