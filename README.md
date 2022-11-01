@@ -17,7 +17,7 @@ Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe
   </mv-space>
   <mv-space plane="wall">
     <mv-object>
-      <geo-text>Touch Hat</geo-text>
+      <geo-text>Touch the hat below</geo-text>
       <mat-std color="white">
     </mv-object>
   </mv-space>
