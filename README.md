@@ -29,7 +29,7 @@ Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe
     </mv-object>
   </mv-space>
     
-  <!-- on and anchor point about 3 meters away create a help icon -->  
+  <!-- create an anchor point about 3 meters for a help icon -->  
   <mv-space anchor="help" preferred-distance="3">
     <mv-object y="2" post="/help" src="question_mark.gltf" swap="self"></mv-object>
   </mv-space>
