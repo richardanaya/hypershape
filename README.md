@@ -73,7 +73,7 @@ def help():
 # Principles:
 
 * Physical-based rendering (PBR) as the standard standard aesthetic
-* HTTPS, WebSocket, WebRTC agnostic but REST conforming
+* Network agnostic (HTTPS, WebSocket, WebRTC are all acceptable) but REST conforming
 * JWT is metaverse avatar identity ( See [JMT](https://github.com/richardanaya/vrmx/blob/main/README.md#json-metaverse-token-jmt) )
 * Behavior is declarative and processed soley by vrmx, script elements should not be allowed
 
