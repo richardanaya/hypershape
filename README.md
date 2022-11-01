@@ -74,7 +74,7 @@ def help():
 
 * Physical-based rendering (PBR) as the standard standard aesthetic
 * HTTPS, WebSocket, WebRTC agnostic but REST conforming
-* JWT is identity
+* JWT is metaverse avatar identity
 
 ## Vision
 
