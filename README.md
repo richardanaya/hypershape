@@ -32,8 +32,8 @@ Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe
 def hat_touched():
     return '<mv-object src="rabit.gltf">'
     
-@app.post("/hat-touched")
-def hat_touched():
+@app.post("/help")
+def help():
     return """
       <mv-object y="1">
         <geo-text>Welcome to a metaverse made with vrmx</geo-text>
