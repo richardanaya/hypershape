@@ -6,7 +6,7 @@ Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe
 <html>
   <head>
     <title>Metaverse</title>
-    <script src="https://unpkg.com/vrmx/dist/index.js"></script>
+    <script src="https://unpkg.com/vrmx/dist/vrmx.js"></script>
   </head>
   <mv-world>
     <mv-object post="/hat-touched" src="hat.gltf" swap="self">
