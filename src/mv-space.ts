@@ -1,6 +1,6 @@
-import { LitElement, css, html } from 'lit'
+import { LitElement, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { BoxGeometry, Mesh, MeshBasicMaterial, Object3D } from 'three'
+import { Object3D } from 'three'
 import { getWorld } from './world'
 
 /**

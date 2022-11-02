@@ -3,11 +3,11 @@
   "description": "A hypertext for the metaverse",
   "version": "0.0.0",
   "type": "module",
-  "main": "dist/my-element.es.js",
+  "main": "dist/vrmx.js",
   "exports": {
-    ".": "./dist/my-element.es.js"
+    ".": "./dist/vrmx.js"
   },
-  "types": "types/my-element.d.ts",
+  "types": "types/vrmx.d.ts",
   "files": [
     "dist",
     "types"

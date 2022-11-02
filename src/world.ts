@@ -1,4 +1,4 @@
-import {ACESFilmicToneMapping, BoxGeometry, DirectionalLight, Mesh, MeshBasicMaterial, PCFSoftShadowMap, PerspectiveCamera, Scene, sRGBEncoding, WebGLRenderer} from "three";
+import {ACESFilmicToneMapping, DirectionalLight, PCFSoftShadowMap, PerspectiveCamera, Scene, sRGBEncoding, WebGLRenderer} from "three";
 
 let scene!: Scene;
 

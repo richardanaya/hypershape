@@ -1,6 +1,6 @@
-import { LitElement, css, html } from "lit";
+import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { BoxGeometry, Euler, Mesh, MeshBasicMaterial, Object3D } from "three";
+import { BoxGeometry, Mesh, MeshBasicMaterial, Object3D } from "three";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { MetaverseSpace } from "./mv-space";
 
