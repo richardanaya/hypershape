@@ -72,6 +72,7 @@ def help():
 
 # Principles:
 
+* Augmented-reality first architecture based around spaces. VR is just a simple one ground space world.
 * Physical-based rendering (PBR) as the standard standard aesthetic
 * Network agnostic (HTTPS, WebSocket, WebRTC are all acceptable) but REST conforming
 * JWT is metaverse avatar identity ( See [JMT](https://github.com/richardanaya/vrmx/blob/main/README.md#json-metaverse-token-jmt) )
