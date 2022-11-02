@@ -2,6 +2,8 @@
 
 Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe.io/), and [htmx](https://htmx.org/) — vrmx is a [hypertext](https://en.wikipedia.org/wiki/Hypertext) for building an interactable server-generated [metaverse](https://en.wikipedia.org/wiki/Metaverse).
 
+> "The Metaverse should be calm, approachable, and let you merge worlds from powerful server-resources" - RICHΛRD
+
 ### Example
 
 <p align="center">
@@ -74,6 +76,7 @@ def help():
 
 * Augmented-reality first architecture based around spaces. VR is just a simple one ground space world.
 * Physical-based rendering (PBR) as the standard standard aesthetic
+* Hand-first oriented interactions
 * Network agnostic (HTTPS, WebSocket, WebRTC are all acceptable) but REST conforming
 * JWT is metaverse avatar identity ( See [JMT](https://github.com/richardanaya/vrmx/blob/main/README.md#json-metaverse-token-jmt) )
 * Behavior is declarative and processed soley by vrmx, script elements will not be allowed
