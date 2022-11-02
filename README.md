@@ -2,10 +2,18 @@
 
 Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe.io/), and [htmx](https://htmx.org/) — vrmx is a [hypertext](https://en.wikipedia.org/wiki/Hypertext) for building an interactable server-generated [metaverse](https://en.wikipedia.org/wiki/Metaverse).
 
+### Example
+
+<p align="center">
+<img width="830" alt="Screen Shot 2022-10-31 at 7 24 40 PM" src="https://user-images.githubusercontent.com/294042/199145684-134238ec-e71b-4ad0-8316-3418fda02a5f.png">
+</p>
+
+
 ```html
 <html>
+
   <head>
-    <title>Metaverse</title>
+    <title>Living Room Metaverse</title>
     <script src="https://unpkg.com/vrmx/dist/vrmx.js"></script>
   </head>
   
@@ -37,6 +45,8 @@ Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe
 </html>
 ```
 
+### Server
+
 ```python
 @app.post("/hat-touched")
 def hat_touched():
@@ -59,3 +69,33 @@ def help():
       </mv-object>
     """
 ```
+
+# Principles:
+
+* Physical-based rendering (PBR) as the standard standard aesthetic
+* Network agnostic (HTTPS, WebSocket, WebRTC are all acceptable) but REST conforming
+* JWT is metaverse avatar identity ( See [JMT](https://github.com/richardanaya/vrmx/blob/main/README.md#json-metaverse-token-jmt) )
+* Behavior is declarative and processed soley by vrmx, script elements will not be allowed
+
+## Vision
+
+### chessboard 
+
+```html
+<html>
+
+  <head>
+    <title>Office Metaverse</title>
+    <script src="https://unpkg.com/vrmx/dist/vrmx.js"></script>
+  </head>
+    
+  <!-- create an anchor point about 3 meters for a chess board
+  you play with your friend -->  
+  <mv-space anchor="game_table" preferred-distance="3">
+    <mv-object post="https://friendchess.com/darryl/board/23vsxvb" trigger="load" swap="self"></mv-object>
+  </mv-space>
+    
+</html>
+```
+
+#### JSON Metaverse Token (JMT)
