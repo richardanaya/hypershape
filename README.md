@@ -2,8 +2,6 @@
 
 Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe.io/), and [htmx](https://htmx.org/) — vrmx is a [hypertext](https://en.wikipedia.org/wiki/Hypertext) for building an interactable server-generated [metaverse](https://en.wikipedia.org/wiki/Metaverse).
 
-> "The Metaverse should be calm, approachable, and let you merge worlds from powerful server-resources" - RICHΛRD
-
 ### Example
 
 <p align="center">
