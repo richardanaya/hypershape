@@ -5,9 +5,9 @@ export default defineConfig({
     lib: {
       // Could also be a dictionary or array of multiple entry points
       entry: 'src/main.ts',
-      name: 'VRMX',
+      name: 'hyperspace',
       // the proper extensions will be added
-      fileName: 'vrmx',
+      fileName: 'hyperspace',
       formats: ['es']
     }
   }

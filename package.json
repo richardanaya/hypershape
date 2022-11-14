@@ -1,13 +1,13 @@
 {
-  "name": "vrmx",
+  "name": "hyperspace",
   "description": "A hypertext for the metaverse",
   "version": "0.0.0",
   "type": "module",
-  "main": "dist/vrmx.js",
+  "main": "dist/hyperspace.js",
   "exports": {
-    ".": "./dist/vrmx.js"
+    ".": "./dist/hyperspace.js"
   },
-  "types": "types/vrmx.d.ts",
+  "types": "types/hyperspace.d.ts",
   "files": [
     "dist",
     "types"
