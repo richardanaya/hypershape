@@ -1,8 +1,118 @@
+
 import {
   ACESFilmicToneMapping,
   BufferGeometry,
+  HemisphereLight,
+  Line,
+  PCFSoftShadowMap,
+  PerspectiveCamera,
+  Scene,
+  sRGBEncoding,
+  Vector3,
+  WebGLRenderer,
+  XRHandSpace,
+  XRTargetRaySpace,
+} from "three";
+
+import { ARButton } from "three/examples/jsm/webxr/ARButton.js";
+
+let controller1!:XRTargetRaySpace, controller2!:XRTargetRaySpace;
+
+let camera!:PerspectiveCamera, scene!:Scene, renderer!:WebGLRenderer;
+
+function init() {
+
+  const container = document.createElement( 'div' );
+  document.body.appendChild( container );
+
+  scene = new Scene();
+
+  camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
+
+  const light = new HemisphereLight( 0xffffff, 0xbbbbff, 1 );
+  light.position.set( 0.5, 1, 0.25 );
+  scene.add( light );
+
+  //
+
+  renderer = new WebGLRenderer( { antialias: true, alpha: true } );
+  renderer.physicallyCorrectLights = true;
+  renderer.outputEncoding = sRGBEncoding;
+  renderer.toneMapping = ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.0;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = PCFSoftShadowMap;
+  renderer.setPixelRatio( window.devicePixelRatio );
+  renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.xr.enabled = true;
+  container.appendChild( renderer.domElement );
+
+
+  document.body.appendChild( ARButton.createButton( renderer ) );
+
+  controller1 = renderer.xr.getController(0);
+  scene.add(controller1);
+
+  controller2 = renderer.xr.getController(1);
+  scene.add(controller2);
+
+  const geometry = new BufferGeometry().setFromPoints([
+    new Vector3(0, 0, 0),
+    new Vector3(0, 0, -1),
+  ]);
+
+  const line = new Line(geometry);
+  line.name = "line";
+  line.scale.z = 5;
+
+  controller1.add(line.clone());
+  controller2.add(line.clone());
+
+  //
+
+  window.addEventListener( 'resize', onWindowResize );
+
+}
+
+function onWindowResize() {
+
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize( window.innerWidth, window.innerHeight );
+
+}
+
+//
+
+function animate() {
+
+  renderer.setAnimationLoop( render );
+
+}
+
+function render() {
+
+  renderer.render( scene, camera );
+
+}
+
+export function getWorld(){
+  if(!scene){
+    init();
+    animate();
+  }
+  return scene;
+}
+
+/*import {
+  ACESFilmicToneMapping,
+  BoxGeometry,
+  BufferGeometry,
   DirectionalLight,
   Line,
+  Mesh,
+  MeshStandardMaterial,
   PCFSoftShadowMap,
   PerspectiveCamera,
   Scene,
@@ -13,12 +123,7 @@ import {
 } from "three";
 
 import { ARButton } from "three/examples/jsm/webxr/ARButton.js";
-import { XRControllerModelFactory } from "three/examples/jsm/webxr/XRControllerModelFactory.js";
-import { XRHandModelFactory } from "three/examples/jsm/webxr/XRHandModelFactory.js";
 
-let hand1, hand2;
-let controller1, controller2;
-let controllerGrip1, controllerGrip2;
 
 let scene!: Scene;
 
@@ -55,6 +160,18 @@ export function getWorld() {
 
     scene = new Scene();
 
+    // add red box
+    
+    let geometry = new BoxGeometry(0.1, 0.1, 0.1);
+    const material = new MeshStandardMaterial({ color: 0xff0000 });
+    const mesh = new Mesh(geometry, material);
+    mesh.position.set(0, 0, -0.5);
+    mesh.receiveShadow = true;
+    mesh.castShadow = true;
+    scene.add(mesh);
+
+
+
     // add global illumination
 
     // add direction light
@@ -76,53 +193,7 @@ export function getWorld() {
     );
     camera.position.z = 5;
 
-    // controllers
-
-    controller1 = renderer.xr.getController(0);
-    scene.add(controller1);
-
-    controller2 = renderer.xr.getController(1);
-    scene.add(controller2);
-
-    const controllerModelFactory = new XRControllerModelFactory();
-    const handModelFactory = new XRHandModelFactory();
-
-    // Hand 1
-    controllerGrip1 = renderer.xr.getControllerGrip(0);
-    controllerGrip1.add(
-      controllerModelFactory.createControllerModel(controllerGrip1)
-    );
-    scene.add(controllerGrip1);
-
-    hand1 = renderer.xr.getHand(0);
-    hand1.add(handModelFactory.createHandModel(hand1));
-
-    scene.add(hand1);
-
-    // Hand 2
-    controllerGrip2 = renderer.xr.getControllerGrip(1);
-    controllerGrip2.add(
-      controllerModelFactory.createControllerModel(controllerGrip2)
-    );
-    scene.add(controllerGrip2);
-
-    hand2 = renderer.xr.getHand(1);
-    hand2.add(handModelFactory.createHandModel(hand2));
-    scene.add(hand2);
-
-    //
-
-    const geometry = new BufferGeometry().setFromPoints([
-      new Vector3(0, 0, 0),
-      new Vector3(0, 0, -1),
-    ]);
-
-    const line = new Line(geometry);
-    line.name = "line";
-    line.scale.z = 5;
-
-    controller1.add(line.clone());
-    controller2.add(line.clone());
+    
 
     const animate = function () {
       requestAnimationFrame(animate);
@@ -132,6 +203,7 @@ export function getWorld() {
   }
   return scene;
 }
+*/
 
 export type Hand = XRHandSpace;
 export type HandMoveHandler = (hands: Hand[]) => void;
