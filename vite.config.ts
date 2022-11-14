@@ -1,7 +1,14 @@
+
+import { resolve } from 'path'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
   build: {
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'main.html'),
+      }
+    },
     lib: {
       // Could also be a dictionary or array of multiple entry points
       entry: 'src/main.ts',
