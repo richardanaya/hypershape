@@ -1,13 +1,13 @@
 {
-  "name": "hyperspace",
+  "name": "hypershape",
   "description": "A hypertext for the metaverse",
   "version": "0.0.0",
   "type": "module",
-  "main": "dist/hyperspace.js",
+  "main": "dist/hypershape.js",
   "exports": {
-    ".": "./dist/hyperspace.js"
+    ".": "./dist/hypershape.js"
   },
-  "types": "types/hyperspace.d.ts",
+  "types": "types/hypershape.d.ts",
   "files": [
     "dist",
     "types"
