@@ -1,4 +1,4 @@
-# hypershape - a hypertext for the metaverse
+# HyperShape - a hypertext for the metaverse
 
 Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe.io/), and [htmx](https://htmx.org/) — hypershape is a [hypertext](https://en.wikipedia.org/wiki/Hypertext) for building an interactable server-generated [metaverse](https://en.wikipedia.org/wiki/Metaverse).
 
