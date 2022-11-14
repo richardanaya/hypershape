@@ -14256,7 +14256,12 @@ class tg {
 let Rr, Dr, Us, Nn, it;
 function ng() {
   const a = document.createElement("div");
-  document.body.appendChild(a), Nn = new pm(), Us = new dt(70, window.innerWidth / window.innerHeight, 0.01, 20);
+  document.body.appendChild(a), Nn = new pm(), Us = new dt(
+    70,
+    window.innerWidth / window.innerHeight,
+    0.01,
+    20
+  );
   const e = new zm(16777215, 12303359, 1);
   e.position.set(0.5, 1, 0.25), Nn.add(e), it = new zl({ antialias: !0, alpha: !0 }), it.physicallyCorrectLights = !0, it.outputEncoding = Fe, it.toneMapping = _l, it.toneMappingExposure = 1, it.shadowMap.enabled = !0, it.shadowMap.type = fl, it.setPixelRatio(window.devicePixelRatio), it.setSize(window.innerWidth, window.innerHeight), it.xr.enabled = !0, a.appendChild(it.domElement), document.body.appendChild(tg.createButton(it)), Rr = it.xr.getController(0), Nn.add(Rr), Dr = it.xr.getController(1), Nn.add(Dr);
   const t = new Ot().setFromPoints([
