@@ -1,8 +1,9 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { BoxGeometry, Mesh, MeshBasicMaterial, Object3D } from "three";
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { MetaverseSpace } from "./mv-space";
+import { addHandMoveHandler, Hand } from "./world";
 
 /**
  * An example element.
@@ -42,9 +43,12 @@ export class MetaverseObject extends LitElement {
   @property({ type: Number, attribute: "sz" })
   sz = 1;
 
+  root = new Object3D();
+
   // connected
   connectedCallback() {
     super.connectedCallback();
+    const { root } = this;
 
     // get parent element
     const parent = this.parentElement;
@@ -62,8 +66,6 @@ export class MetaverseObject extends LitElement {
       return;
     }
 
-    const root = new Object3D();
-
     const material = new MeshBasicMaterial({ color: Math.random() * 0xffffff });
 
     if (this.src === "") {
@@ -71,7 +73,7 @@ export class MetaverseObject extends LitElement {
       const cube = new Mesh(geometry, material);
       root.add(cube);
     } else {
-      const loader = new GLTFLoader()
+      const loader = new GLTFLoader();
       loader.load(this.src, (gltf) => {
         root.add(gltf.scene);
       });
@@ -87,6 +89,35 @@ export class MetaverseObject extends LitElement {
     root.scale.y = this.sy;
     root.scale.z = this.sz;
     space.add(root);
+
+    // if has attribute "post"
+    if (this.hasAttribute("post")) {
+      const post = this.getAttribute("post");
+      if (post !== null) {
+        this.addInteractionHandler("post", post);
+      }
+    }
+  }
+
+  interactionHandlers: { method: string; url: string }[] = [];
+
+  isWatchingHands = false;
+
+  addInteractionHandler(httpMethod: string, url: string) {
+    this.interactionHandlers.push({ method: httpMethod, url: url });
+    if (!this.isWatchingHands) {
+      addHandMoveHandler((hands) => {
+        if(this.isInteractingWithHands(hands)) {
+          this.interactionHandlers.forEach(({method, url}) => {
+            fetch(url, {method});
+          });
+        }
+      });
+    }
+  }
+
+  isInteractingWithHands(_hands: Hand[]) {
+    return false;
   }
 
   render() {
