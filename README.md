@@ -1,6 +1,6 @@
-# vrmx - a hypertext for the metaverse
+# hypershape - a hypertext for the metaverse
 
-Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe.io/), and [htmx](https://htmx.org/) — vrmx is a [hypertext](https://en.wikipedia.org/wiki/Hypertext) for building an interactable server-generated [metaverse](https://en.wikipedia.org/wiki/Metaverse).
+Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe.io/), and [htmx](https://htmx.org/) — hypershape is a [hypertext](https://en.wikipedia.org/wiki/Hypertext) for building an interactable server-generated [metaverse](https://en.wikipedia.org/wiki/Metaverse).
 
 ### Example
 
@@ -14,7 +14,7 @@ Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe
 
   <head>
     <title>Living Room Metaverse</title>
-    <script src="https://unpkg.com/vrmx/dist/vrmx.js"></script>
+    <script src="https://unpkg.com/hypershape/dist/hypershape.js"></script>
   </head>
   
   <!-- on the nearest detected ground plane with origin 
@@ -56,7 +56,7 @@ def hat_touched():
 def help():
     return """
       <mv-object y="1">
-        <geo-text>Welcome to a metaverse made with vrmx</geo-text>
+        <geo-text>Welcome to a metaverse made with hypershape</geo-text>
         <mat-std color="white">
       </mv-object>
       <mv-object>
@@ -76,8 +76,8 @@ def help():
 * Physical-based rendering (PBR) as the standard standard aesthetic
 * Hand-first oriented interactions
 * Network agnostic (HTTPS, WebSocket, WebRTC are all acceptable) but REST conforming
-* JWT is metaverse avatar identity ( See [JMT](https://github.com/richardanaya/vrmx/blob/main/README.md#json-metaverse-token-jmt) )
-* Behavior is declarative and processed soley by vrmx, script elements will not be allowed
+* JWT is metaverse avatar identity ( See [JMT](https://github.com/richardanaya/hypershape/blob/main/README.md#json-metaverse-token-jmt) )
+* Behavior is declarative and processed soley by hypershape, script elements will not be allowed
 
 ## Vision
 
@@ -88,7 +88,7 @@ def help():
 
   <head>
     <title>Office Metaverse</title>
-    <script src="https://unpkg.com/vrmx/dist/vrmx.js"></script>
+    <script src="https://unpkg.com/hypershape/dist/hypershape.js"></script>
   </head>
     
   <!-- create an anchor point about 3 meters for a chess board
