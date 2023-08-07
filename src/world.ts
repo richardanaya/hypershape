@@ -3,10 +3,13 @@ import {
   BufferGeometry,
   HemisphereLight,
   Line,
+  Object3D,
   PCFSoftShadowMap,
   PerspectiveCamera,
+  Raycaster,
   Scene,
   sRGBEncoding,
+  Vector2,
   Vector3,
   WebGLRenderer,
   XRHandSpace,
@@ -92,12 +95,67 @@ function render() {
   renderer.render(scene, camera);
 }
 
+export class MetaverseWorld {
+  scene: Scene;
+
+  registeredListeners: Map<Object3D, () => void> = new Map();
+
+  constructor(scene: Scene) {
+    this.scene = scene;
+
+    //setup raycasters
+    const raycaster = new Raycaster();
+    const mouse = new Vector2();
+    const intersectObjects = (event: MouseEvent) => {
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouse, camera);
+      const objs = this.registeredListeners.keys();
+      const intersects = raycaster.intersectObjects(Array.from(objs));
+      return intersects;
+    };
+    window.addEventListener("click", (event) => {
+      const intersects = intersectObjects(event);
+      debugger;
+      for (const intersect of intersects) {
+        const obj: Object3D = intersect.object;
+        const listener = this.registeredListeners.get(obj);
+        if (listener) {
+          listener();
+        } else {
+          debugger;
+          // itereate through all parents until found registered
+          let parent = obj.parent;
+          while (parent !== null) {
+            const listener = this.registeredListeners.get(parent);
+            if (listener) {
+              listener();
+              break;
+            }
+            parent = parent.parent;
+          }
+        }
+      }
+    });
+  }
+
+  registerInteractiveObject(obj: Object3D, onInteract: () => void) {
+    this.registeredListeners.set(obj, onInteract);
+  }
+}
+
+let globalWorld: MetaverseWorld;
+
 export function getWorld() {
   if (!scene) {
     init();
     animate();
   }
-  return scene;
+  if (!globalWorld) {
+    globalWorld = new MetaverseWorld(scene);
+  }
+
+  return globalWorld;
 }
 
 export type Hand = XRHandSpace;

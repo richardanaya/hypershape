@@ -9,9 +9,12 @@
     <script type="module" src="./src/main.ts"></script>
   </head>
   <mv-space>
-    <mv-object x="1" ry=".9" sx=".01" sy=".01" sz=".01" src="./Fox.gltf"></mv-object>
-  </mv-space>
-  <mv-space>
-    <mv-object x="-1"></mv-object>
+    <mv-link href="https://google.com">
+      <mv-model
+        position="0,0,-1"
+        scale=".001,.001,.001"
+        src="./Fox.gltf"
+      ></mv-model>
+    </mv-link>
   </mv-space>
 </html>
