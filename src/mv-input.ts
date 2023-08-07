@@ -1,12 +1,10 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { Object3D } from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { BoxGeometry, Mesh, MeshStandardMaterial, Object3D } from "three";
 import { MetaverseSpace } from "./mv-space";
-import { addHandMoveHandler, Hand } from "./world";
 
-@customElement("mv-model")
-export class MetaverseModel extends LitElement {
+@customElement("mv-input")
+export class MetaverseInput extends LitElement {
   @property({ type: String, attribute: "src" })
   src = "";
 
@@ -48,17 +46,19 @@ export class MetaverseModel extends LitElement {
       throw new Error("No parent space found for mv-model");
     }
 
-    const loader = new GLTFLoader();
-    loader.load(this.src, (gltf) => {
-      space.add(gltf.scene);
-      this.isLoaded = true;
-      // emit loaded event
-      this.dispatchEvent(
-        new CustomEvent("loaded", {
-          detail: { model: gltf.scene },
-        })
-      );
-    });
+    const cube = new Mesh(
+      new BoxGeometry(1, 1, 1),
+      new MeshStandardMaterial({ color: 0xfffffff })
+    );
+
+    space.add(cube);
+    this.isLoaded = true;
+    // emit loaded event
+    this.dispatchEvent(
+      new CustomEvent("loaded", {
+        detail: { model: cube },
+      })
+    );
 
     const [x, y, z] = this.positon.split(",").map((s) => parseFloat(s));
     const [rx, ry, rz] = this.rotation.split(",").map((s) => parseFloat(s));
@@ -74,35 +74,6 @@ export class MetaverseModel extends LitElement {
     space.scale.y = sy;
     space.scale.z = sz;
     parentSpace.add(space);
-
-    // if has attribute "post"
-    if (this.hasAttribute("post")) {
-      const post = this.getAttribute("post");
-      if (post !== null) {
-        this.addInteractionHandler("post", post);
-      }
-    }
-  }
-
-  interactionHandlers: { method: string; url: string }[] = [];
-
-  isWatchingHands = false;
-
-  addInteractionHandler(httpMethod: string, url: string) {
-    this.interactionHandlers.push({ method: httpMethod, url: url });
-    if (!this.isWatchingHands) {
-      addHandMoveHandler((hands) => {
-        if (this.isInteractingWithHands(hands)) {
-          this.interactionHandlers.forEach(({ method, url }) => {
-            fetch(url, { method });
-          });
-        }
-      });
-    }
-  }
-
-  isInteractingWithHands(_hands: Hand[]) {
-    return false;
   }
 
   render() {
@@ -112,6 +83,6 @@ export class MetaverseModel extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "mv-model": MetaverseModel;
+    "mv-input": MetaverseInput;
   }
 }

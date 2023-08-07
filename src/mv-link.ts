@@ -16,7 +16,6 @@ export class MetaverseLink extends LitElement {
   // connected
   connectedCallback() {
     super.connectedCallback();
-    // list children
     const children = this.children;
     const world = getWorld();
     for (let i = 0; i < children.length; i++) {

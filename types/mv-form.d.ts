@@ -1,13 +1,12 @@
 import { LitElement } from "lit";
-import { Object3D } from "three";
-export declare class MetaverseSpace extends LitElement {
-    space: Object3D<import("three").Event>;
+export declare class MetaverseForm extends LitElement {
+    action: string;
     createRenderRoot(): this;
     connectedCallback(): void;
     render(): import("lit-html").TemplateResult<1>;
 }
 declare global {
     interface HTMLElementTagNameMap {
-        "mv-space": MetaverseSpace;
+        "mv-form": MetaverseForm;
     }
 }
