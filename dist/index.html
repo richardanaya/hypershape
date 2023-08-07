@@ -2,18 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Demo Metaverse</title>
-    
-    
-    <script type="module" crossorigin src="./hypershape.js"></script>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./src/index.css" />
+    <script type="module" src="./src/main.ts"></script>
   </head>
   <mv-space>
-    <mv-object x="1" ry=".9" sx=".01" sy=".01" sz=".01" src="./Fox.gltf"></mv-object>
-  </mv-space>
-  <mv-space>
-    <mv-object x="-1"></mv-object>
+    <mv-link href="https://google.com">
+      <mv-model
+        position="0,0,-1"
+        scale=".001,.001,.001"
+        src="./Fox.gltf"
+      ></mv-model>
+    </mv-link>
+    <mv-form action="/foo" method="post">
+      <mv-input
+        name="blah"
+        type="checkbox"
+        position="0,.4,-1"
+        scale=".1,.1,.1"
+        src="./Fox.gltf"
+      ></mv-input>
+      <mv-input
+        type="submit"
+        position="0,.2,-1"
+        scale=".1,.1,.1"
+        src="./Fox.gltf"
+      ></mv-input>
+    </mv-form>
   </mv-space>
 </html>
