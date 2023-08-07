@@ -1,5 +1,6 @@
 import {
   ACESFilmicToneMapping,
+  Clock,
   Object3D,
   PCFSoftShadowMap,
   PerspectiveCamera,
@@ -10,12 +11,16 @@ import {
   WebGLRenderer,
   XRHandSpace,
 } from "three";
+import * as THREE from "three";
+import CameraControls from "camera-controls";
 
-import { MapControls } from "three/examples/jsm/controls/MapControls.js";
+CameraControls.install({ THREE: THREE });
+
+const clock = new Clock();
 
 let camera!: PerspectiveCamera, scene!: Scene, renderer!: WebGLRenderer;
 
-let controls!: MapControls;
+let controls!: CameraControls;
 
 function init() {
   const container = document.createElement("div");
@@ -29,6 +34,7 @@ function init() {
     0.01,
     20
   );
+  camera.position.set(0, 1.75, 3);
 
   //
 
@@ -47,9 +53,7 @@ function init() {
   renderer.xr.enabled = true;
   container.appendChild(renderer.domElement);
 
-  controls = new MapControls(camera, renderer.domElement);
-  camera.position.set(0, 1.75, 1.75);
-  controls.update();
+  controls = new CameraControls(camera, renderer.domElement);
 
   window.addEventListener("resize", onWindowResize);
 }
@@ -67,8 +71,43 @@ function animate() {
   renderer.setAnimationLoop(render);
 }
 
+// switch the behavior by the modifier key press
+const keyState = {
+  shiftRight: false,
+  shiftLeft: false,
+  controlRight: false,
+  controlLeft: false,
+};
+
+const updateConfig = () => {
+  if (keyState.shiftRight || keyState.shiftLeft) {
+    controls.mouseButtons.left = CameraControls.ACTION.TRUCK;
+  } else if (keyState.controlRight || keyState.controlLeft) {
+    controls.mouseButtons.left = CameraControls.ACTION.DOLLY;
+  } else {
+    controls.mouseButtons.left = CameraControls.ACTION.ROTATE;
+  }
+};
+
+document.addEventListener("keydown", (event) => {
+  if (event.code === "ShiftRight") keyState.shiftRight = true;
+  if (event.code === "ShiftLeft") keyState.shiftLeft = true;
+  if (event.code === "ControlRight") keyState.controlRight = true;
+  if (event.code === "ControlLeft") keyState.controlLeft = true;
+  updateConfig();
+});
+
+document.addEventListener("keyup", (event) => {
+  if (event.code === "ShiftRight") keyState.shiftRight = false;
+  if (event.code === "ShiftLeft") keyState.shiftLeft = false;
+  if (event.code === "ControlRight") keyState.controlRight = false;
+  if (event.code === "ControlLeft") keyState.controlLeft = false;
+  updateConfig();
+});
+
 function render() {
-  controls.update();
+  const delta = clock.getDelta();
+  controls.update(delta);
   renderer.render(scene, camera);
 }
 
