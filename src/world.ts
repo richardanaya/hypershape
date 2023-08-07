@@ -54,6 +54,15 @@ function init() {
   container.appendChild(renderer.domElement);
 
   controls = new CameraControls(camera, renderer.domElement);
+  controls.mouseButtons.left = CameraControls.ACTION.TRUCK;
+  controls.mouseButtons.right = CameraControls.ACTION.ROTATE;
+  controls.mouseButtons.wheel = CameraControls.ACTION.DOLLY;
+  controls.mouseButtons.middle = CameraControls.ACTION.TRUCK;
+  controls.maxDistance = 10;
+  controls.minDistance = 0.01;
+  controls.maxPolarAngle = Math.PI / 2;
+  controls.verticalDragToForward = true;
+  controls.infinityDolly = false;
 
   window.addEventListener("resize", onWindowResize);
 }
@@ -81,11 +90,11 @@ const keyState = {
 
 const updateConfig = () => {
   if (keyState.shiftRight || keyState.shiftLeft) {
-    controls.mouseButtons.left = CameraControls.ACTION.TRUCK;
+    controls.mouseButtons.left = CameraControls.ACTION.ROTATE;
   } else if (keyState.controlRight || keyState.controlLeft) {
     controls.mouseButtons.left = CameraControls.ACTION.DOLLY;
   } else {
-    controls.mouseButtons.left = CameraControls.ACTION.ROTATE;
+    controls.mouseButtons.left = CameraControls.ACTION.TRUCK;
   }
 };
 
