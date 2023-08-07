@@ -1,6 +1,8 @@
 import { LitElement } from "lit";
 import { Object3D } from "three";
-export declare class MetaverseModel extends LitElement {
+export declare class MetaverseLabel extends LitElement {
+    for: string;
+    text: string;
     src: string;
     positon: string;
     rotation: string;
@@ -13,6 +15,6 @@ export declare class MetaverseModel extends LitElement {
 }
 declare global {
     interface HTMLElementTagNameMap {
-        "mv-model": MetaverseModel;
+        "mv-label": MetaverseLabel;
     }
 }

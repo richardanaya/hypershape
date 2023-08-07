@@ -1,12 +1,19 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { Object3D } from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { MetaverseSpace } from "./mv-space";
+import { Mesh, MeshStandardMaterial, Object3D } from "three";
 import { findParent } from "./utils";
+import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
+import { MetaverseSpace } from "./mv-space";
+import { Font, FontLoader } from "three/examples/jsm/loaders/FontLoader";
 
-@customElement("mv-model")
-export class MetaverseModel extends LitElement {
+@customElement("mv-label")
+export class MetaverseLabel extends LitElement {
+  @property({ type: String, attribute: "for" })
+  for = "";
+
+  @property({ type: String, attribute: "text" })
+  text = "";
+
   @property({ type: String, attribute: "src" })
   src = "";
 
@@ -43,17 +50,24 @@ export class MetaverseModel extends LitElement {
     }
     const parentSpace = parentSpaceEl.space;
 
-    const loader = new GLTFLoader();
-    loader.load(this.src, (gltf) => {
-      space.add(gltf.scene);
-      this.isLoaded = true;
-      // emit loaded event
-      this.dispatchEvent(
-        new CustomEvent("loaded", {
-          detail: { model: gltf.scene },
-        })
-      );
-    });
+    // created 3D text mesh with Threejs
+    const fontLoader = new FontLoader();
+    fontLoader.load(
+      "https://threejs.org/examples/fonts/helvetiker_regular.typeface.json",
+      (font: Font) => {
+        const textGeometry = new TextGeometry(this.text, {
+          font,
+          size: 1,
+          height: 0.01,
+        });
+        const textMaterial = new MeshStandardMaterial({
+          color: 0xffffff,
+        });
+        const text = new Mesh(textGeometry, textMaterial);
+        text.position.y = -0.5;
+        space.add(text);
+      }
+    );
 
     const [x, y, z] = this.positon.split(",").map((s) => parseFloat(s));
     const [rx, ry, rz] = this.rotation.split(",").map((s) => parseFloat(s));
@@ -78,6 +92,6 @@ export class MetaverseModel extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "mv-model": MetaverseModel;
+    "mv-label": MetaverseLabel;
   }
 }
