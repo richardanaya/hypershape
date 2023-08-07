@@ -51,6 +51,7 @@ function init() {
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.xr.enabled = true;
+  renderer.setClearColor(0x16161d, 1);
   container.appendChild(renderer.domElement);
 
   controls = new CameraControls(camera, renderer.domElement);
@@ -128,38 +129,91 @@ export class MetaverseWorld {
   constructor(scene: Scene) {
     this.scene = scene;
 
-    //setup raycasters
     const raycaster = new Raycaster();
     const mouse = new Vector2();
-    const intersectObjects = (event: MouseEvent) => {
-      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-      raycaster.setFromCamera(mouse, camera);
-      const objs = this.registeredListeners.keys();
-      const intersects = raycaster.intersectObjects(Array.from(objs));
-      return intersects;
-    };
-    window.addEventListener("click", (event) => {
-      const intersects = intersectObjects(event);
-      for (const intersect of intersects) {
-        const obj: Object3D = intersect.object;
-        const listener = this.registeredListeners.get(obj);
-        if (listener) {
-          listener();
-        } else {
-          // itereate through all parents until found registered
-          let parent = obj.parent;
-          while (parent !== null) {
-            const listener = this.registeredListeners.get(parent);
-            if (listener) {
-              listener();
-              break;
+
+    if (supportsTouch()) {
+      const getNormalizedCoordinates = (
+        event: Touch,
+        rendererDomElement: HTMLCanvasElement
+      ) => {
+        const rect = rendererDomElement.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        // Convert the mouse/touch position into normalized device coordinates (-1 to +1) for WebGL.
+        mouse.x = (x / rect.width) * 2 - 1;
+        mouse.y = -(y / rect.height) * 2 + 1;
+      };
+
+      const intersectObjects = (
+        event: TouchEvent,
+        rendererDomElement: HTMLCanvasElement,
+        camera: PerspectiveCamera
+      ) => {
+        const touch = event.touches[0];
+
+        getNormalizedCoordinates(touch, rendererDomElement);
+
+        raycaster.setFromCamera(mouse, camera);
+        const objs = Array.from(this.registeredListeners.keys());
+        const intersects = raycaster.intersectObjects(objs);
+
+        return intersects;
+      };
+      window.addEventListener("touchstart", (event) => {
+        debugger;
+        const intersects = intersectObjects(event, renderer.domElement, camera);
+        for (const intersect of intersects) {
+          const obj: Object3D = intersect.object;
+          const listener = this.registeredListeners.get(obj);
+          if (listener) {
+            listener();
+          } else {
+            // itereate through all parents until found registered
+            let parent = obj.parent;
+            while (parent !== null) {
+              const listener = this.registeredListeners.get(parent);
+              if (listener) {
+                listener();
+                break;
+              }
+              parent = parent.parent;
             }
-            parent = parent.parent;
           }
         }
-      }
-    });
+      });
+    } else {
+      const intersectObjects = (event: MouseEvent) => {
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        raycaster.setFromCamera(mouse, camera);
+        const objs = this.registeredListeners.keys();
+        const intersects = raycaster.intersectObjects(Array.from(objs));
+        return intersects;
+      };
+      window.addEventListener("click", (event) => {
+        const intersects = intersectObjects(event);
+        for (const intersect of intersects) {
+          const obj: Object3D = intersect.object;
+          const listener = this.registeredListeners.get(obj);
+          if (listener) {
+            listener();
+          } else {
+            // itereate through all parents until found registered
+            let parent = obj.parent;
+            while (parent !== null) {
+              const listener = this.registeredListeners.get(parent);
+              if (listener) {
+                listener();
+                break;
+              }
+              parent = parent.parent;
+            }
+          }
+        }
+      });
+    }
   }
 
   registerInteractiveObject(obj: Object3D, onInteract: () => void) {
@@ -188,4 +242,8 @@ const handMoveHandlers: HandMoveHandler[] = [];
 
 export function addHandMoveHandler(onHandMove: HandMoveHandler) {
   handMoveHandlers.push(onHandMove);
+}
+
+function supportsTouch() {
+  return "ontouchstart" in window || navigator.maxTouchPoints > 0;
 }
