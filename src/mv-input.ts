@@ -115,6 +115,11 @@ export class MetaverseInput extends LitElement {
     } else if (this.type === "text") {
       getWorld().registerInteractiveObject(cube, () => {
         this.value = window.prompt("Enter text", this.value) ?? "";
+        if (this.value === "") {
+          cube.material.color.setHex(0x333333);
+        } else {
+          cube.material.color.setHex(0xffffff);
+        }
       });
       parentForm.registerInput(this);
     }

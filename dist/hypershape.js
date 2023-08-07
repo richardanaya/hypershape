@@ -23941,7 +23941,7 @@ let yn = class extends mn {
       this.value === "true" ? (this.value = "false", n.material.color.setHex(3355443)) : (this.value = "true", n.material.color.setHex(16777215));
     }), f.registerInput(this)) : this.type === "text" && (ji().registerInteractiveObject(n, () => {
       var m;
-      this.value = (m = window.prompt("Enter text", this.value)) != null ? m : "";
+      this.value = (m = window.prompt("Enter text", this.value)) != null ? m : "", this.value === "" ? n.material.color.setHex(3355443) : n.material.color.setHex(16777215);
     }), f.registerInput(this));
   }
   render() {
