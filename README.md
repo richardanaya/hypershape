@@ -25,7 +25,7 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
 
 - WebGPU support by default
 - Support PBR only
-- HTVL only
+- MHTL only
 - Be future forward for augmented reality
 
 ### MHTL Elements
