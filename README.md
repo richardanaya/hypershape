@@ -9,7 +9,7 @@ Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe
 
 See a [demo](https://richardanaya.github.io/hypershape/dist/)
 
-The markup language shall be known as `HTVL`.
+The markup language shall be known as `MHTL` (metaverse hypertext language)
 
 ### What made Web 1.0 great
 
@@ -27,7 +27,7 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
 * HTVL only
 * Be future forward for augmented reality
 
-### HTVL Elements
+### MHTL Elements
 
 * `mv-space`
 * `mv-model`
