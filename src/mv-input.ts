@@ -60,7 +60,9 @@ export class MetaverseInput extends LitElement {
 
     const cube = new Mesh(
       new BoxGeometry(1, 1, 1),
-      new MeshStandardMaterial({ color: 0xfffffff })
+      new MeshStandardMaterial({
+        color: this.value === "true" ? 0xfffffff : 0x333333,
+      })
     );
 
     space.add(cube);
@@ -99,7 +101,21 @@ export class MetaverseInput extends LitElement {
       getWorld().registerInteractiveObject(cube, () => {
         parentForm.submit();
       });
-    } else {
+    } else if (this.type === "checkbox") {
+      getWorld().registerInteractiveObject(cube, () => {
+        if (this.value === "true") {
+          this.value = "false";
+          cube.material.color.setHex(0x333333);
+        } else {
+          this.value = "true";
+          cube.material.color.setHex(0xffffff);
+        }
+      });
+      parentForm.registerInput(this);
+    } else if (this.type === "text") {
+      getWorld().registerInteractiveObject(cube, () => {
+        this.value = window.prompt("Enter text", this.value) ?? "";
+      });
       parentForm.registerInput(this);
     }
   }
