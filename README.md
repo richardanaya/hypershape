@@ -36,3 +36,4 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
 - `mv-form`
 - `mv-input`
 - `mv-label`
+- `mv-light`

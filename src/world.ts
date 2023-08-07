@@ -1,26 +1,21 @@
 import {
   ACESFilmicToneMapping,
-  BufferGeometry,
-  HemisphereLight,
-  Line,
   Object3D,
   PCFSoftShadowMap,
   PerspectiveCamera,
   Raycaster,
   Scene,
-  sRGBEncoding,
+  SRGBColorSpace,
   Vector2,
-  Vector3,
   WebGLRenderer,
   XRHandSpace,
-  XRTargetRaySpace,
 } from "three";
 
-import { ARButton } from "three/examples/jsm/webxr/ARButton.js";
-
-let controller1!: XRTargetRaySpace, controller2!: XRTargetRaySpace;
+import { MapControls } from "three/examples/jsm/controls/MapControls.js";
 
 let camera!: PerspectiveCamera, scene!: Scene, renderer!: WebGLRenderer;
+
+let controls!: MapControls;
 
 function init() {
   const container = document.createElement("div");
@@ -35,15 +30,14 @@ function init() {
     20
   );
 
-  const light = new HemisphereLight(0xffffff, 0xbbbbff, 1);
-  light.position.set(0.5, 1, 0.25);
-  scene.add(light);
-
   //
 
-  renderer = new WebGLRenderer({ antialias: true, alpha: true });
-  renderer.physicallyCorrectLights = true;
-  renderer.outputEncoding = sRGBEncoding;
+  renderer = new WebGLRenderer({
+    antialias: true,
+    alpha: true,
+  });
+  renderer.useLegacyLights = false;
+  renderer.outputColorSpace = SRGBColorSpace;
   renderer.toneMapping = ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.0;
   renderer.shadowMap.enabled = true;
@@ -53,27 +47,9 @@ function init() {
   renderer.xr.enabled = true;
   container.appendChild(renderer.domElement);
 
-  document.body.appendChild(ARButton.createButton(renderer));
-
-  controller1 = renderer.xr.getController(0);
-  scene.add(controller1);
-
-  controller2 = renderer.xr.getController(1);
-  scene.add(controller2);
-
-  const geometry = new BufferGeometry().setFromPoints([
-    new Vector3(0, 0, 0),
-    new Vector3(0, 0, -1),
-  ]);
-
-  const line = new Line(geometry);
-  line.name = "line";
-  line.scale.z = 5;
-
-  controller1.add(line.clone());
-  controller2.add(line.clone());
-
-  //
+  controls = new MapControls(camera, renderer.domElement);
+  camera.position.set(0, 1.75, 1.75);
+  controls.update();
 
   window.addEventListener("resize", onWindowResize);
 }
@@ -92,6 +68,7 @@ function animate() {
 }
 
 function render() {
+  controls.update();
   renderer.render(scene, camera);
 }
 
