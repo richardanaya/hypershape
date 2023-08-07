@@ -11,6 +11,11 @@
   <mv-space>
     <mv-light type="ambient" color="#ffffff" intensity="1"></mv-light>
     <mv-link href="https://google.com">
+      <mv-label
+        position="0.1,0,-1"
+        scale=".04,.04,.04"
+        text="Go to google"
+      ></mv-label>
       <mv-model
         position="0,0,-1"
         scale=".001,.001,.001"
@@ -21,8 +26,8 @@
       <mv-label
         position="0.1,.6,-1"
         for="person_name"
-        scale=".1,.1,.1"
-        text="Name"
+        scale=".04,.04,.04"
+        text="Fill in name"
       ></mv-label>
       <mv-input
         name="person_name"
@@ -30,12 +35,24 @@
         position="0,.6,-1"
         scale=".1,.1,.1"
       ></mv-input>
+      <mv-label
+        position="0.1,.4,-1"
+        for="person_name"
+        scale=".04,.04,.04"
+        text="Is Programmer?"
+      ></mv-label>
       <mv-input
         name="blah"
         type="checkbox"
         position="0,.4,-1"
         scale=".1,.1,.1"
-      ></mv-input>
+      ></mv-input
+      ><mv-label
+        position="0.1,.2,-1"
+        for="person_name"
+        scale=".04,.04,.04"
+        text="Submit"
+      ></mv-label>
       <mv-input type="submit" position="0,.2,-1" scale=".1,.1,.1"></mv-input>
     </mv-form>
   </mv-space>
