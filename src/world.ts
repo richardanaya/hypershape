@@ -116,14 +116,12 @@ export class MetaverseWorld {
     };
     window.addEventListener("click", (event) => {
       const intersects = intersectObjects(event);
-      debugger;
       for (const intersect of intersects) {
         const obj: Object3D = intersect.object;
         const listener = this.registeredListeners.get(obj);
         if (listener) {
           listener();
         } else {
-          debugger;
           // itereate through all parents until found registered
           let parent = obj.parent;
           while (parent !== null) {

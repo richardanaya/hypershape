@@ -2,6 +2,9 @@ import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { BoxGeometry, Mesh, MeshStandardMaterial, Object3D } from "three";
 import { MetaverseSpace } from "./mv-space";
+import { findParent } from "./utils";
+import { MetaverseForm } from "./mv-form";
+import { getWorld } from "./world";
 
 @customElement("mv-input")
 export class MetaverseInput extends LitElement {
@@ -22,6 +25,15 @@ export class MetaverseInput extends LitElement {
 
   @property({ type: Object3D })
   space = new Object3D();
+
+  @property({ type: String, attribute: "type" })
+  type = "submit";
+
+  @property({ type: String, attribute: "name" })
+  name = "";
+
+  @property({ type: String, attribute: "value" })
+  value = "";
 
   createRenderRoot() {
     return this;
@@ -74,6 +86,22 @@ export class MetaverseInput extends LitElement {
     space.scale.y = sy;
     space.scale.z = sz;
     parentSpace.add(space);
+
+    const parentForm = findParent(
+      this,
+      (e) => e instanceof MetaverseForm
+    ) as MetaverseForm;
+    if (parentForm === null) {
+      throw new Error("No parent form found for mv-model");
+    }
+
+    if (this.type === "submit") {
+      getWorld().registerInteractiveObject(cube, () => {
+        parentForm.submit();
+      });
+    } else {
+      parentForm.registerInput(this);
+    }
   }
 
   render() {

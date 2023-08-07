@@ -7,6 +7,9 @@ export declare class MetaverseInput extends LitElement {
     scale: string;
     isLoaded: boolean;
     space: Object3D<import("three").Event>;
+    type: string;
+    name: string;
+    value: string;
     createRenderRoot(): this;
     connectedCallback(): void;
     render(): import("lit-html").TemplateResult<1>;

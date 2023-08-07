@@ -4,6 +4,7 @@ import { Object3D } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { MetaverseSpace } from "./mv-space";
 import { addHandMoveHandler, Hand } from "./world";
+import { findParent } from "./utils";
 
 @customElement("mv-model")
 export class MetaverseModel extends LitElement {
@@ -34,19 +35,14 @@ export class MetaverseModel extends LitElement {
     super.connectedCallback();
     const { space } = this;
 
-    // iterate through parents to find the nearest element with ".space"
-    let parentSpace: Object3D | null = null;
-    let parent = this.parentElement;
-    while (parent !== null) {
-      if (parent instanceof MetaverseSpace) {
-        parentSpace = parent.space;
-        break;
-      }
-      parent = parent.parentElement;
-    }
-    if (parentSpace === null) {
+    const parentSpaceEl = findParent(
+      this,
+      (e) => e instanceof MetaverseSpace
+    ) as MetaverseSpace;
+    if (parentSpaceEl === null) {
       throw new Error("No parent space found for mv-model");
     }
+    const parentSpace = parentSpaceEl.space;
 
     const loader = new GLTFLoader();
     loader.load(this.src, (gltf) => {
