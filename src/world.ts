@@ -8,6 +8,7 @@ import {
   Scene,
   SRGBColorSpace,
   Vector2,
+  Vector3,
   WebGLRenderer,
   XRHandSpace,
 } from "three";
@@ -34,9 +35,6 @@ function init() {
     0.01,
     20
   );
-  camera.position.set(0, 1.75, 3);
-
-  //
 
   renderer = new WebGLRenderer({
     antialias: true,
@@ -214,6 +212,33 @@ export class MetaverseWorld {
         }
       });
     }
+  }
+
+  moveCameraAndLook(position: Vector3, lookAt: Vector3) {
+    controls.setLookAt(
+      position.x,
+      position.y,
+      position.z,
+      lookAt.x,
+      lookAt.y,
+      lookAt.z,
+      true
+    );
+  }
+
+  addWorldInfoToForm(nameToValue: any) {
+    // get look at position
+    const position = new Vector3();
+    const target = new Vector3();
+    controls.getTarget(target);
+    controls.getPosition(position);
+
+    nameToValue[
+      "metaverse-camera-position"
+    ] = `${position.x},${position.y},${position.z}`;
+    nameToValue[
+      "metaverse-camera-lookat"
+    ] = `${target.x},${target.y},${target.z}`;
   }
 
   registerInteractiveObject(obj: Object3D, onInteract: () => void) {

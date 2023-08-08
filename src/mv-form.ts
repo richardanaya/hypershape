@@ -1,6 +1,7 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { MetaverseInput } from "./mv-input";
+import { getWorld } from "./world";
 
 @customElement("mv-form")
 export class MetaverseForm extends LitElement {
@@ -35,6 +36,7 @@ export class MetaverseForm extends LitElement {
       acc[input.name] = input.value;
       return acc;
     }, {} as any);
+    getWorld().addWorldInfoToForm(nameToValue);
     // create a new invisible form and submit it
     const form = document.createElement("form");
     form.style.display = "none";

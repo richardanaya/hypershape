@@ -1,8 +1,10 @@
-import { Object3D, Scene, XRHandSpace } from "three";
+import { Object3D, Scene, Vector3, XRHandSpace } from "three";
 export declare class MetaverseWorld {
     scene: Scene;
     registeredListeners: Map<Object3D, () => void>;
     constructor(scene: Scene);
+    moveCameraAndLook(position: Vector3, lookAt: Vector3): void;
+    addWorldInfoToForm(nameToValue: any): void;
     registerInteractiveObject(obj: Object3D, onInteract: () => void): void;
 }
 export declare function getWorld(): MetaverseWorld;

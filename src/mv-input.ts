@@ -102,6 +102,9 @@ export class MetaverseInput extends LitElement {
         parentForm.submit();
       });
     } else if (this.type === "checkbox") {
+      if (this.value === "") {
+        this.value = "false";
+      }
       getWorld().registerInteractiveObject(cube, () => {
         if (this.value === "true") {
           this.value = "false";
