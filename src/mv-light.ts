@@ -2,6 +2,7 @@ import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { getWorld } from "./world";
 import { AmbientLight } from "three";
+import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 
 @customElement("mv-light")
 export class MetaverseLight extends LitElement {
@@ -13,6 +14,9 @@ export class MetaverseLight extends LitElement {
 
   @property({ type: String, attribute: "intensity" })
   intensity = 1;
+
+  @property({ type: String, attribute: "src" })
+  src = "";
 
   createRenderRoot() {
     return this;
@@ -26,6 +30,13 @@ export class MetaverseLight extends LitElement {
       // set ambient light
       const light = new AmbientLight(this.color, this.intensity);
       scene.add(light);
+    } else if (this.type == "hdri") {
+      debugger;
+      if (this.src !== "") {
+        new RGBELoader().load(this.src, (texture) => {
+          getWorld().setHDRITexture(texture);
+        });
+      }
     }
   }
 

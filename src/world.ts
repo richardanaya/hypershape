@@ -4,9 +4,11 @@ import {
   Object3D,
   PCFSoftShadowMap,
   PerspectiveCamera,
+  PMREMGenerator,
   Raycaster,
   Scene,
   SRGBColorSpace,
+  Texture,
   Vector2,
   Vector3,
   WebGLRenderer,
@@ -243,6 +245,14 @@ export class MetaverseWorld {
 
   registerInteractiveObject(obj: Object3D, onInteract: () => void) {
     this.registeredListeners.set(obj, onInteract);
+  }
+
+  setHDRITexture(texture: Texture) {
+    const gen = new PMREMGenerator(renderer);
+    const envMap = gen.fromEquirectangular(texture).texture;
+    scene.environment = envMap;
+    texture.dispose();
+    gen.dispose();
   }
 }
 
