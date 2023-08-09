@@ -31,6 +31,8 @@ export class MetaverseLabel extends LitElement {
   @property({ type: Object3D })
   space = new Object3D();
 
+  parentSpace: Object3D | undefined;
+
   createRenderRoot() {
     return this;
   }
@@ -40,7 +42,7 @@ export class MetaverseLabel extends LitElement {
     super.connectedCallback();
     const { space } = this;
 
-    const parentSpace = getParentSpace(this);
+    this.parentSpace = getParentSpace(this);
 
     // created 3D text mesh with Threejs
     const fontLoader = new FontLoader();
@@ -75,7 +77,13 @@ export class MetaverseLabel extends LitElement {
     space.scale.x = sx;
     space.scale.y = sy;
     space.scale.z = sz;
-    parentSpace.add(space);
+    this.parentSpace.add(space);
+  }
+
+  // disconnected
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.parentSpace?.remove(this.space);
   }
 
   render() {

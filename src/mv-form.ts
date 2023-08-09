@@ -14,7 +14,15 @@ export class MetaverseForm extends LitElement {
   @property({ type: String, attribute: "target" })
   target = "";
 
+  @property({ type: String, attribute: "timeout" })
+  timeout = "";
+
+  @property({ type: String, attribute: "timer" })
+  timer = "";
+
   inputs: MetaverseInput[] = [];
+
+  timerHandle: number | undefined;
 
   createRenderRoot() {
     return this;
@@ -23,6 +31,27 @@ export class MetaverseForm extends LitElement {
   // connected
   connectedCallback() {
     super.connectedCallback();
+    if (this.timeout !== "") {
+      this.timerHandle = window.setTimeout(() => {
+        this.submit();
+      }, parseInt(this.timeout));
+    } else if (this.timer !== "") {
+      this.timerHandle = window.setInterval(() => {
+        this.submit();
+      }, parseInt(this.timer));
+    }
+  }
+
+  // disconnected
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    if (this.timerHandle) {
+      if (this.timeout !== "") {
+        window.clearTimeout(this.timerHandle);
+      } else if (this.timer !== "") {
+        window.clearInterval(this.timerHandle);
+      }
+    }
   }
 
   render() {
@@ -63,11 +92,14 @@ export class MetaverseForm extends LitElement {
         formData.append(name, value);
       }
 
+      let url = this.action;
       let body = undefined;
       if (this.method === "POST") {
         body = formData;
+      } else {
+        url = url + "?" + new URLSearchParams(formData as any).toString();
       }
-      const r = await fetch(this.action, {
+      const r = await fetch(url, {
         method: this.method,
         body,
       });

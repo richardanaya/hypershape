@@ -9,8 +9,10 @@ export declare class MetaverseLabel extends LitElement {
     scale: string;
     isLoaded: boolean;
     space: Object3D<import("three").Event>;
+    parentSpace: Object3D | undefined;
     createRenderRoot(): this;
     connectedCallback(): void;
+    disconnectedCallback(): void;
     render(): import("lit-html").TemplateResult<1>;
 }
 declare global {

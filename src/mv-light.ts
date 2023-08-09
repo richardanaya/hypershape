@@ -1,7 +1,7 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { getWorld } from "./world";
-import { AmbientLight } from "three";
+import { AmbientLight, Object3D } from "three";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 
 @customElement("mv-light")
@@ -25,20 +25,30 @@ export class MetaverseLight extends LitElement {
     return this;
   }
 
+  light: Object3D | undefined;
+
   // connected
   connectedCallback() {
     super.connectedCallback();
     if (this.type === "ambient") {
       const scene = getWorld().scene;
       // set ambient light
-      const light = new AmbientLight(this.color, this.intensity);
-      scene.add(light);
+      this.light = new AmbientLight(this.color, this.intensity);
+      scene.add(this.light);
     } else if (this.type == "hdri") {
       if (this.src !== "") {
         new RGBELoader().load(this.src, (texture) => {
           getWorld().setHDRITexture(texture, this.background === "true");
         });
       }
+    }
+  }
+
+  // disconnected
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    if (this.light) {
+      getWorld().scene.remove(this.light);
     }
   }
 

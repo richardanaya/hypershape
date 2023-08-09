@@ -19,6 +19,13 @@ export class MetaverseSpace extends LitElement {
     world.scene.add(this.space);
   }
 
+  // disconnected
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    const world = getWorld();
+    world.scene.remove(this.space);
+  }
+
   render() {
     getWorld();
     return html``;

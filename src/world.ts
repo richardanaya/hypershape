@@ -336,10 +336,16 @@ export class MetaverseWorld {
 
   registerInteractiveObject(obj: Object3D, onInteract: () => void) {
     this.registeredListeners.set(obj, onInteract);
+    return () => {
+      this.registeredListeners.delete(obj);
+    };
   }
 
   registerInteractiveHudObject(obj: Object3D, onInteract: () => void) {
     this.registeredHudListeners.set(obj, onInteract);
+    return () => {
+      this.registeredHudListeners.delete(obj);
+    };
   }
 
   setHDRITexture(texture: Texture, background: boolean) {

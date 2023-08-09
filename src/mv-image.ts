@@ -76,6 +76,13 @@ export class MetaverseImage extends LitElement {
     parentSpace.add(space);
   }
 
+  // disconnected
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    const parentSpace = getParentSpace(this);
+    parentSpace.remove(this.space);
+  }
+
   render() {
     return html``;
   }

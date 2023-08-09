@@ -9,6 +9,8 @@ export class MetaverseLink extends LitElement {
   @property({ type: String, attribute: "href" })
   href = "";
 
+  unregisters: (() => void)[] = [];
+
   createRenderRoot() {
     return this;
   }
@@ -23,11 +25,23 @@ export class MetaverseLink extends LitElement {
       child.addEventListener("loaded", (e) => {
         const g: Group = (e as any).detail.model;
         if (isHUD) {
-          world.registerInteractiveHudObject(g, this.onNavigate);
+          this.unregisters.push(
+            world.registerInteractiveHudObject(g, this.onNavigate)
+          );
         } else {
-          world.registerInteractiveObject(g, this.onNavigate);
+          this.unregisters.push(
+            world.registerInteractiveObject(g, this.onNavigate)
+          );
         }
       });
+    });
+  }
+
+  // disconnected
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.unregisters.forEach((unregister) => {
+      unregister();
     });
   }
 

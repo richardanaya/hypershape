@@ -24,6 +24,8 @@ export class MetaverseModel extends LitElement {
   @property({ type: Object3D })
   space = new Object3D();
 
+  parentSpace: Object3D | undefined;
+
   createRenderRoot() {
     return this;
   }
@@ -33,7 +35,7 @@ export class MetaverseModel extends LitElement {
     super.connectedCallback();
     const { space } = this;
 
-    const parentSpace = getParentSpace(this);
+    this.parentSpace = getParentSpace(this);
 
     const loader = new GLTFLoader();
     loader.load(this.src, (gltf) => {
@@ -60,7 +62,13 @@ export class MetaverseModel extends LitElement {
     space.scale.x = sx;
     space.scale.y = sy;
     space.scale.z = sz;
-    parentSpace.add(space);
+    this.parentSpace.add(space);
+  }
+
+  // disconnected
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.parentSpace?.remove(this.space);
   }
 
   render() {

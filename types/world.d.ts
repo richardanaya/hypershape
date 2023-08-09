@@ -7,8 +7,8 @@ export declare class MetaverseWorld {
     constructor(scene: Scene, hudScene: Scene);
     moveCameraAndLook(position: Vector3, lookAt: Vector3): void;
     addWorldInfoToForm(nameToValue: any): void;
-    registerInteractiveObject(obj: Object3D, onInteract: () => void): void;
-    registerInteractiveHudObject(obj: Object3D, onInteract: () => void): void;
+    registerInteractiveObject(obj: Object3D, onInteract: () => void): () => void;
+    registerInteractiveHudObject(obj: Object3D, onInteract: () => void): () => void;
     setHDRITexture(texture: Texture, background: boolean): void;
 }
 export declare function getWorld(): MetaverseWorld;

@@ -21,6 +21,8 @@ export class MetaverseWater extends LitElement {
   @property({ type: Object3D })
   space = new Object3D();
 
+  intervalHandle: number | undefined;
+
   createRenderRoot() {
     return this;
   }
@@ -57,7 +59,7 @@ export class MetaverseWater extends LitElement {
     const onRender = () => {
       water.material.uniforms["time"].value += 0.0003;
     };
-    window.setInterval(onRender, 1000 / 60);
+    this.intervalHandle = window.setInterval(onRender, 1000 / 60);
 
     space.add(water);
 
@@ -68,6 +70,16 @@ export class MetaverseWater extends LitElement {
     space.position.z = z;
 
     parentSpace.add(space);
+  }
+
+  // disconnected
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    const parentSpace = getParentSpace(this);
+    parentSpace.remove(this.space);
+    if (this.intervalHandle) {
+      window.clearInterval(this.intervalHandle);
+    }
   }
 
   render() {

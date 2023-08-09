@@ -10,8 +10,11 @@ export declare class MetaverseInput extends LitElement {
     type: string;
     name: string;
     value: string;
+    unregisters: (() => void)[];
+    parentSpace: Object3D | undefined;
     createRenderRoot(): this;
     connectedCallback(): void;
+    disconnectedCallback(): void;
     render(): import("lit-html").TemplateResult<1>;
 }
 declare global {

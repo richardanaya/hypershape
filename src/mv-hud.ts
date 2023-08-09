@@ -19,6 +19,13 @@ export class MetaverseHudSpace extends LitElement {
     world.hudScene.add(this.space);
   }
 
+  // disconnected
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    const world = getWorld();
+    world.hudScene.remove(this.space);
+  }
+
   render() {
     getWorld();
     return html``;

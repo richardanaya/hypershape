@@ -34,6 +34,10 @@ export class MetaverseInput extends LitElement {
   @property({ type: String, attribute: "value" })
   value = "";
 
+  unregisters: (() => void)[] = [];
+
+  parentSpace: Object3D | undefined;
+
   createRenderRoot() {
     return this;
   }
@@ -43,7 +47,7 @@ export class MetaverseInput extends LitElement {
     super.connectedCallback();
     const { space } = this;
 
-    let parentSpace = getParentSpace(this);
+    this.parentSpace = getParentSpace(this);
     const isHud = isInHudSpace(this);
     const world = getWorld();
     const registerFn = isHud
@@ -79,7 +83,7 @@ export class MetaverseInput extends LitElement {
     space.scale.x = sx;
     space.scale.y = sy;
     space.scale.z = sz;
-    parentSpace.add(space);
+    this.parentSpace.add(space);
 
     const parentForm = findParent(
       this,
@@ -90,34 +94,47 @@ export class MetaverseInput extends LitElement {
     }
 
     if (this.type === "submit") {
-      registerFn.call(undefined, cube, () => {
-        parentForm.submit();
-      });
+      this.unregisters.push(
+        registerFn.call(undefined, cube, () => {
+          parentForm.submit();
+        })
+      );
     } else if (this.type === "checkbox") {
       if (this.value === "") {
         this.value = "false";
       }
-      registerFn.call(undefined, cube, () => {
-        if (this.value === "true") {
-          this.value = "false";
-          cube.material.color.setHex(0x666666);
-        } else {
-          this.value = "true";
-          cube.material.color.setHex(0xffffff);
-        }
-      });
+      this.unregisters.push(
+        registerFn.call(undefined, cube, () => {
+          if (this.value === "true") {
+            this.value = "false";
+            cube.material.color.setHex(0x666666);
+          } else {
+            this.value = "true";
+            cube.material.color.setHex(0xffffff);
+          }
+        })
+      );
       parentForm.registerInput(this);
     } else if (this.type === "text") {
-      registerFn.call(undefined, cube, () => {
-        this.value = window.prompt("Enter text", this.value) ?? "";
-        if (this.value === "") {
-          cube.material.color.setHex(0x666666);
-        } else {
-          cube.material.color.setHex(0xffffff);
-        }
-      });
+      this.unregisters.push(
+        registerFn.call(undefined, cube, () => {
+          this.value = window.prompt("Enter text", this.value) ?? "";
+          if (this.value === "") {
+            cube.material.color.setHex(0x666666);
+          } else {
+            cube.material.color.setHex(0xffffff);
+          }
+        })
+      );
       parentForm.registerInput(this);
     }
+  }
+
+  // disconnected
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.parentSpace?.remove(this.space);
+    this.unregisters.forEach((unregister) => unregister());
   }
 
   render() {

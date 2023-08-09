@@ -4,6 +4,7 @@ export declare class MetaverseHudSpace extends LitElement {
     space: Object3D<import("three").Event>;
     createRenderRoot(): this;
     connectedCallback(): void;
+    disconnectedCallback(): void;
     render(): import("lit-html").TemplateResult<1>;
 }
 declare global {
