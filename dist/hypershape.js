@@ -21654,7 +21654,6 @@ class rS {
         return t.intersectObjects(h);
       };
       window.addEventListener("touchstart", (o) => {
-        debugger;
         const a = s(o, Pt.domElement, cs);
         for (const c of a) {
           const l = c.object, h = this.registeredListeners.get(l);
@@ -24356,12 +24355,10 @@ let ls = class extends un {
     if (super.connectedCallback(), this.type === "ambient") {
       const r = On().scene, e = new Uh(this.color, this.intensity);
       r.add(e);
-    } else if (this.type == "hdri") {
-      debugger;
-      this.src !== "" && new xE().load(this.src, (r) => {
+    } else
+      this.type == "hdri" && this.src !== "" && new xE().load(this.src, (r) => {
         On().setHDRITexture(r, this.background === "true");
       });
-    }
   }
   render() {
     return Ci``;

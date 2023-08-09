@@ -162,7 +162,6 @@ export class MetaverseWorld {
         return intersects;
       };
       window.addEventListener("touchstart", (event) => {
-        debugger;
         const intersects = intersectObjects(event, renderer.domElement, camera);
         for (const intersect of intersects) {
           const obj: Object3D = intersect.object;
