@@ -38,6 +38,9 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
 - `mv-label`
 - `mv-light`
 - `mv-camera`
+- `mv-water`
+- `mv-target`
+- `mv-hud`
 
 # Art
 
