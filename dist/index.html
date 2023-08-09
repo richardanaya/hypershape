@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Demo Metaverse</title>
-    <script type="module" crossorigin src="./hypershape.js"></script>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./src/index.css" />
+    <script type="module" src="./src/main.ts"></script>
   </head>
   <mv-space>
     <mv-camera position="0,1.75,3"></mv-camera>
@@ -15,9 +15,10 @@
       src="https://richardanaya.github.io/hypershape/dist/assets/kloofendal_43d_clear_puresky_4k.hdr"
       backkground="true"
     ></mv-light>
+    <mv-water></mv-water>
     <mv-link href="https://google.com">
       <mv-label
-        position="0.1,0,-1"
+        position="0.1,.05,-1"
         scale=".04,.04,.04"
         text="Go to google"
       ></mv-label>
