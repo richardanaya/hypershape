@@ -1,9 +1,8 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { MetaverseModel } from "./mv-model";
 import { Group } from "three";
 import { getWorld } from "./world";
-import { isInHudSpace } from "./utils";
+import { getInteractableChildren, isInHudSpace } from "./utils";
 
 @customElement("mv-link")
 export class MetaverseLink extends LitElement {
@@ -18,22 +17,18 @@ export class MetaverseLink extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     const isHUD = isInHudSpace(this);
-    debugger;
-    const children = this.children;
     const world = getWorld();
-    for (let i = 0; i < children.length; i++) {
-      const child = children[i];
-      if (child instanceof MetaverseModel) {
-        child.addEventListener("loaded", (e) => {
-          const g: Group = (e as any).detail.model;
-          if (isHUD) {
-            world.registerInteractiveHudObject(g, this.onNavigate);
-          } else {
-            world.registerInteractiveObject(g, this.onNavigate);
-          }
-        });
-      }
-    }
+    const interactables = getInteractableChildren(this);
+    interactables.forEach((child) => {
+      child.addEventListener("loaded", (e) => {
+        const g: Group = (e as any).detail.model;
+        if (isHUD) {
+          world.registerInteractiveHudObject(g, this.onNavigate);
+        } else {
+          world.registerInteractiveObject(g, this.onNavigate);
+        }
+      });
+    });
   }
 
   onNavigate = () => {

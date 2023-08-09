@@ -1,4 +1,6 @@
 import { MetaverseHudSpace } from "./mv-hud";
+import { MetaverseImage } from "./mv-image";
+import { MetaverseModel } from "./mv-model";
 import { MetaverseSpace } from "./mv-space";
 
 export function findParent(
@@ -33,4 +35,16 @@ export function isInHudSpace(el: HTMLElement) {
     (e) => e instanceof MetaverseHudSpace
   ) as MetaverseHudSpace;
   return parentSpaceEl !== null;
+}
+
+export function getInteractableChildren(el: HTMLElement) {
+  const interactables = [];
+  const children = el.children;
+  for (let i = 0; i < children.length; i++) {
+    const child = children[i];
+    if (child instanceof MetaverseModel || child instanceof MetaverseImage) {
+      interactables.push(child);
+    }
+  }
+  return interactables;
 }

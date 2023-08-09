@@ -9,3 +9,4 @@ import "./mv-light";
 import "./mv-camera";
 import "./mv-water";
 import "./mv-hud";
+import "./mv-image";

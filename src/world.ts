@@ -275,7 +275,7 @@ export class MetaverseWorld {
             camera
           ),
         ];
-        debugger;
+
         for (const intersect of intersects) {
           const obj: Object3D = intersect.object;
           let listener = this.registeredListeners.get(obj);
