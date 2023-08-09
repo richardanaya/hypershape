@@ -15,6 +15,7 @@
     </mv-form>
   </mv-hud>
   <mv-space>
+    <mv-target id="show_here"></mv-target>
     <mv-camera position="0,1.75,3"></mv-camera>
     <mv-light
       type="hdri"
@@ -30,7 +31,7 @@
         src="./Fox.gltf"
       ></mv-model>
     </mv-link>
-    <mv-form action="/foo" method="post">
+    <mv-form action="/foo" method="post" target="show_here">
       <mv-label
         position="0.1,.6,-1"
         for="person_name"
