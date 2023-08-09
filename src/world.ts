@@ -35,7 +35,7 @@ function init() {
     70,
     window.innerWidth / window.innerHeight,
     0.01,
-    20
+    2000
   );
 
   renderer = new WebGLRenderer({

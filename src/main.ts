@@ -7,3 +7,4 @@ import "./mv-input";
 import "./mv-label";
 import "./mv-light";
 import "./mv-camera";
+import "./mv-water";
