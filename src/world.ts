@@ -25,6 +25,9 @@ let camera!: PerspectiveCamera, scene!: Scene, renderer!: WebGLRenderer;
 
 let controls!: CameraControls;
 
+const hudScene = new THREE.Scene();
+let orthoCamera!: THREE.OrthographicCamera;
+
 function init() {
   const container = document.createElement("div");
   document.body.appendChild(container);
@@ -38,10 +41,26 @@ function init() {
     2000
   );
 
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const aspect = width / height;
+  orthoCamera = new THREE.OrthographicCamera(-aspect, aspect, 1, -1, 0, 100000);
+  orthoCamera.position.z = 0;
+
+  /*const hudGeometry = new THREE.PlaneGeometry(1, 1);
+  const hudMaterial = new THREE.MeshBasicMaterial({
+    color: "red",
+  });
+  const hudElement = new THREE.Mesh(hudGeometry, hudMaterial);
+
+  hudScene.add(hudElement);*/
+
   renderer = new WebGLRenderer({
     antialias: true,
     alpha: true,
+    preserveDrawingBuffer: true,
   });
+  renderer.autoClearColor = false;
   renderer.useLegacyLights = false;
   renderer.outputColorSpace = SRGBColorSpace;
   renderer.toneMapping = ACESFilmicToneMapping;
@@ -51,7 +70,6 @@ function init() {
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.xr.enabled = true;
-  renderer.setClearColor(0x16161d, 1);
   container.appendChild(renderer.domElement);
 
   controls = new CameraControls(camera, renderer.domElement);
@@ -69,8 +87,26 @@ function init() {
 }
 
 function onWindowResize() {
-  camera.aspect = window.innerWidth / window.innerHeight;
+  const newWidth = window.innerWidth;
+  const newHeight = window.innerHeight;
+
+  camera.aspect = newWidth / newHeight;
   camera.updateProjectionMatrix();
+
+  // update ortho camera based on aspect ratio
+  const aspect = newWidth / newHeight;
+  if (aspect > 1) {
+    orthoCamera.left = -aspect;
+    orthoCamera.right = aspect;
+    orthoCamera.top = 1;
+    orthoCamera.bottom = -1;
+  } else {
+    orthoCamera.left = -1;
+    orthoCamera.right = 1;
+    orthoCamera.top = 1 / aspect;
+    orthoCamera.bottom = -1 / aspect;
+  }
+  orthoCamera.updateProjectionMatrix();
 
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
@@ -116,9 +152,12 @@ document.addEventListener("keyup", (event) => {
 });
 
 function render() {
+  renderer.setClearColor(0x16161d, 1);
   const delta = clock.getDelta();
   controls.update(delta);
   renderer.render(scene, camera);
+  renderer.clearDepth();
+  renderer.render(hudScene, orthoCamera);
 }
 
 export class MetaverseWorld {
@@ -149,7 +188,7 @@ export class MetaverseWorld {
       const intersectObjects = (
         event: TouchEvent,
         rendererDomElement: HTMLCanvasElement,
-        camera: PerspectiveCamera
+        camera: PerspectiveCamera | THREE.OrthographicCamera
       ) => {
         const touch = event.touches[0];
 
