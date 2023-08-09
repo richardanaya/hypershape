@@ -44,19 +44,20 @@ export class MetaverseLabel extends LitElement {
 
     // created 3D text mesh with Threejs
     const fontLoader = new FontLoader();
+    const baseScale = 0.05;
     fontLoader.load(
       "https://threejs.org/examples/fonts/helvetiker_regular.typeface.json",
       (font: Font) => {
         const textGeometry = new TextGeometry(this.text, {
           font,
-          size: 1,
-          height: 0.01,
+          size: baseScale,
+          height: 0.01 * baseScale,
         });
         const textMaterial = new MeshStandardMaterial({
           color: 0xffffff,
         });
         const text = new Mesh(textGeometry, textMaterial);
-        text.position.y = -0.5;
+        text.position.y = -0.5 * baseScale;
         space.add(text);
       }
     );

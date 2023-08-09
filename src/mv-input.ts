@@ -51,7 +51,7 @@ export class MetaverseInput extends LitElement {
       : getWorld().registerInteractiveObject.bind(world);
 
     const cube = new Mesh(
-      new BoxGeometry(1, 1, 1),
+      new BoxGeometry(0.1, 0.1, 0.1),
       new MeshStandardMaterial({
         color: this.value === "true" ? 0xfffffff : 0x666666,
       })

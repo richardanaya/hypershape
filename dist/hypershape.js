@@ -24098,7 +24098,7 @@ let bn = class extends Xt {
     const { space: r } = this;
     let e = yo(this);
     const t = mm(this), n = fn(), i = t ? fn().registerInteractiveHudObject.bind(n) : fn().registerInteractiveObject.bind(n), s = new vt(
-      new Li(1, 1, 1),
+      new Li(0.1, 0.1, 0.1),
       new Ii({
         color: this.value === "true" ? 268435455 : 6710886
       })
@@ -24254,22 +24254,22 @@ let kn = class extends Xt {
   }
   connectedCallback() {
     super.connectedCallback();
-    const { space: r } = this, e = yo(this);
-    new CE().load(
+    const { space: r } = this, e = yo(this), t = new CE(), n = 0.05;
+    t.load(
       "https://threejs.org/examples/fonts/helvetiker_regular.typeface.json",
-      (d) => {
-        const f = new RE(this.text, {
-          font: d,
-          size: 1,
-          height: 0.01
-        }), g = new Ii({
+      (f) => {
+        const g = new RE(this.text, {
+          font: f,
+          size: n,
+          height: 0.01 * n
+        }), _ = new Ii({
           color: 16777215
-        }), _ = new vt(f, g);
-        _.position.y = -0.5, r.add(_);
+        }), m = new vt(g, _);
+        m.position.y = -0.5 * n, r.add(m);
       }
     );
-    const [n, i, s] = this.positon.split(",").map((d) => parseFloat(d)), [o, a, c] = this.rotation.split(",").map((d) => parseFloat(d)), [l, h, u] = this.scale.split(",").map((d) => parseFloat(d));
-    r.position.x = n, r.position.y = i, r.position.z = s, r.rotation.x = o, r.rotation.y = a, r.rotation.z = c, r.scale.x = l, r.scale.y = h, r.scale.z = u, e.add(r);
+    const [i, s, o] = this.positon.split(",").map((f) => parseFloat(f)), [a, c, l] = this.rotation.split(",").map((f) => parseFloat(f)), [h, u, d] = this.scale.split(",").map((f) => parseFloat(f));
+    r.position.x = i, r.position.y = s, r.position.z = o, r.rotation.x = a, r.rotation.y = c, r.rotation.z = l, r.scale.x = h, r.scale.y = u, r.scale.z = d, e.add(r);
   }
   render() {
     return Ln``;
