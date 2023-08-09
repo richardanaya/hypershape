@@ -63,9 +63,13 @@ export class MetaverseForm extends LitElement {
         formData.append(name, value);
       }
 
+      let body = undefined;
+      if (this.method === "POST") {
+        body = formData;
+      }
       const r = await fetch(this.action, {
         method: this.method,
-        body: formData,
+        body,
       });
       const text = await r.text();
       const target = document.body.querySelector("#" + this.target);
