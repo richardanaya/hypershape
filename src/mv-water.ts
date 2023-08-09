@@ -8,8 +8,7 @@ import {
   Vector3,
 } from "three";
 import { Water } from "three/examples/jsm/objects/Water.js";
-import { MetaverseSpace } from "./mv-space";
-import { findParent } from "./utils";
+import { getParentSpace } from "./utils";
 
 @customElement("mv-water")
 export class MetaverseWater extends LitElement {
@@ -31,14 +30,7 @@ export class MetaverseWater extends LitElement {
     super.connectedCallback();
     const { space } = this;
 
-    const parentSpaceEl = findParent(
-      this,
-      (e) => e instanceof MetaverseSpace
-    ) as MetaverseSpace;
-    if (parentSpaceEl === null) {
-      throw new Error("No parent space found for mv-model");
-    }
-    const parentSpace = parentSpaceEl.space;
+    const parentSpace = getParentSpace(this);
 
     const waterGeometry = new PlaneGeometry(10000, 10000);
 

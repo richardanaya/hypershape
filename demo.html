@@ -8,6 +8,20 @@
     <link rel="stylesheet" href="./src/index.css" />
     <script type="module" src="./src/main.ts"></script>
   </head>
+  <mv-hud>
+    <mv-link href="https://google.com">
+      <mv-model
+        position="-.95,.9,0"
+        scale=".001,.001,.001"
+        src="./Fox.gltf"
+      ></mv-model>
+      <mv-label
+        position="-.90,.95,0"
+        scale=".04,.04,.04"
+        text="Go to google"
+      ></mv-label>
+    </mv-link>
+  </mv-hud>
   <mv-space>
     <mv-camera position="0,1.75,3"></mv-camera>
     <mv-light

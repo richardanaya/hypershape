@@ -3,6 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import { MetaverseModel } from "./mv-model";
 import { Group } from "three";
 import { getWorld } from "./world";
+import { isInHudSpace } from "./utils";
 
 @customElement("mv-link")
 export class MetaverseLink extends LitElement {
@@ -16,6 +17,8 @@ export class MetaverseLink extends LitElement {
   // connected
   connectedCallback() {
     super.connectedCallback();
+    const isHUD = isInHudSpace(this);
+    debugger;
     const children = this.children;
     const world = getWorld();
     for (let i = 0; i < children.length; i++) {
@@ -23,7 +26,11 @@ export class MetaverseLink extends LitElement {
       if (child instanceof MetaverseModel) {
         child.addEventListener("loaded", (e) => {
           const g: Group = (e as any).detail.model;
-          world.registerInteractiveObject(g, this.onNavigate);
+          if (isHUD) {
+            world.registerInteractiveHudObject(g, this.onNavigate);
+          } else {
+            world.registerInteractiveObject(g, this.onNavigate);
+          }
         });
       }
     }

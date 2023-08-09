@@ -2,8 +2,7 @@ import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { Object3D } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { MetaverseSpace } from "./mv-space";
-import { findParent } from "./utils";
+import { getParentSpace } from "./utils";
 
 @customElement("mv-model")
 export class MetaverseModel extends LitElement {
@@ -34,14 +33,7 @@ export class MetaverseModel extends LitElement {
     super.connectedCallback();
     const { space } = this;
 
-    const parentSpaceEl = findParent(
-      this,
-      (e) => e instanceof MetaverseSpace
-    ) as MetaverseSpace;
-    if (parentSpaceEl === null) {
-      throw new Error("No parent space found for mv-model");
-    }
-    const parentSpace = parentSpaceEl.space;
+    const parentSpace = getParentSpace(this);
 
     const loader = new GLTFLoader();
     loader.load(this.src, (gltf) => {

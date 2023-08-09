@@ -28,6 +28,10 @@ let controls!: CameraControls;
 const hudScene = new THREE.Scene();
 let orthoCamera!: THREE.OrthographicCamera;
 
+// add ambient light
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+hudScene.add(ambientLight);
+
 function init() {
   const container = document.createElement("div");
   document.body.appendChild(container);
@@ -162,11 +166,14 @@ function render() {
 
 export class MetaverseWorld {
   scene: Scene;
+  hudScene: Scene;
 
   registeredListeners: Map<Object3D, () => void> = new Map();
+  registeredHudListeners: Map<Object3D, () => void> = new Map();
 
-  constructor(scene: Scene) {
+  constructor(scene: Scene, hudScene: Scene) {
     this.scene = scene;
+    this.hudScene = hudScene;
 
     const raycaster = new Raycaster();
     const mouse = new Vector2();
@@ -186,6 +193,7 @@ export class MetaverseWorld {
       };
 
       const intersectObjects = (
+        objs: Object3D[],
         event: TouchEvent,
         rendererDomElement: HTMLCanvasElement,
         camera: PerspectiveCamera | THREE.OrthographicCamera
@@ -195,23 +203,44 @@ export class MetaverseWorld {
         getNormalizedCoordinates(touch, rendererDomElement);
 
         raycaster.setFromCamera(mouse, camera);
-        const objs = Array.from(this.registeredListeners.keys());
         const intersects = raycaster.intersectObjects(objs);
 
         return intersects;
       };
+
       window.addEventListener("touchstart", (event) => {
-        const intersects = intersectObjects(event, renderer.domElement, camera);
+        let intersects = [
+          ...intersectObjects(
+            Array.from(this.registeredHudListeners.keys()),
+            event,
+            renderer.domElement,
+            orthoCamera
+          ),
+          ...intersectObjects(
+            Array.from(this.registeredListeners.keys()),
+            event,
+            renderer.domElement,
+            camera
+          ),
+        ];
         for (const intersect of intersects) {
           const obj: Object3D = intersect.object;
-          const listener = this.registeredListeners.get(obj);
+          let listener = this.registeredListeners.get(obj);
+          if (!listener) {
+            listener = this.registeredHudListeners.get(obj);
+          }
+
           if (listener) {
             listener();
+            break;
           } else {
             // itereate through all parents until found registered
             let parent = obj.parent;
             while (parent !== null) {
-              const listener = this.registeredListeners.get(parent);
+              let listener = this.registeredListeners.get(parent);
+              if (!listener) {
+                listener = this.registeredHudListeners.get(parent);
+              }
               if (listener) {
                 listener();
                 break;
@@ -222,26 +251,48 @@ export class MetaverseWorld {
         }
       });
     } else {
-      const intersectObjects = (event: MouseEvent) => {
+      const intersectObjects = (
+        objs: Object3D[],
+        event: MouseEvent,
+        camera: PerspectiveCamera | THREE.OrthographicCamera
+      ) => {
         mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
         mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
         raycaster.setFromCamera(mouse, camera);
-        const objs = this.registeredListeners.keys();
-        const intersects = raycaster.intersectObjects(Array.from(objs));
+        const intersects = raycaster.intersectObjects(objs);
         return intersects;
       };
       window.addEventListener("click", (event) => {
-        const intersects = intersectObjects(event);
+        const intersects = [
+          ...intersectObjects(
+            Array.from(this.registeredHudListeners.keys()),
+            event,
+            orthoCamera
+          ),
+          ...intersectObjects(
+            Array.from(this.registeredListeners.keys()),
+            event,
+            camera
+          ),
+        ];
+        debugger;
         for (const intersect of intersects) {
           const obj: Object3D = intersect.object;
-          const listener = this.registeredListeners.get(obj);
+          let listener = this.registeredListeners.get(obj);
+          if (!listener) {
+            listener = this.registeredHudListeners.get(obj);
+          }
           if (listener) {
             listener();
+            break;
           } else {
             // itereate through all parents until found registered
             let parent = obj.parent;
             while (parent !== null) {
-              const listener = this.registeredListeners.get(parent);
+              let listener = this.registeredListeners.get(parent);
+              if (!listener) {
+                listener = this.registeredHudListeners.get(parent);
+              }
               if (listener) {
                 listener();
                 break;
@@ -285,6 +336,10 @@ export class MetaverseWorld {
     this.registeredListeners.set(obj, onInteract);
   }
 
+  registerInteractiveHudObject(obj: Object3D, onInteract: () => void) {
+    this.registeredHudListeners.set(obj, onInteract);
+  }
+
   setHDRITexture(texture: Texture, background: boolean) {
     const gen = new PMREMGenerator(renderer);
     const envMap = gen.fromEquirectangular(texture).texture;
@@ -305,7 +360,7 @@ export function getWorld() {
     animate();
   }
   if (!globalWorld) {
-    globalWorld = new MetaverseWorld(scene);
+    globalWorld = new MetaverseWorld(scene, hudScene);
   }
 
   return globalWorld;

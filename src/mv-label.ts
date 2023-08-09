@@ -1,9 +1,8 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { Mesh, MeshStandardMaterial, Object3D } from "three";
-import { findParent } from "./utils";
+import { getParentSpace } from "./utils";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
-import { MetaverseSpace } from "./mv-space";
 import { Font, FontLoader } from "three/examples/jsm/loaders/FontLoader";
 
 @customElement("mv-label")
@@ -41,14 +40,7 @@ export class MetaverseLabel extends LitElement {
     super.connectedCallback();
     const { space } = this;
 
-    const parentSpaceEl = findParent(
-      this,
-      (e) => e instanceof MetaverseSpace
-    ) as MetaverseSpace;
-    if (parentSpaceEl === null) {
-      throw new Error("No parent space found for mv-model");
-    }
-    const parentSpace = parentSpaceEl.space;
+    const parentSpace = getParentSpace(this);
 
     // created 3D text mesh with Threejs
     const fontLoader = new FontLoader();
