@@ -21614,7 +21614,7 @@ function rS() {
     2e3
   );
   const e = window.innerWidth, t = window.innerHeight, n = e / t;
-  cn = new dr(-n, n, 1, -1, 0, 1e5), cn.position.z = 0, Mt = new _h({
+  cn = new dr(-n, n, 1, -1, 0, 1e5), cn.position.z = 1, Mt = new _h({
     antialias: !0,
     alpha: !0,
     preserveDrawingBuffer: !0

@@ -45,7 +45,7 @@ function init() {
   const height = window.innerHeight;
   const aspect = width / height;
   orthoCamera = new THREE.OrthographicCamera(-aspect, aspect, 1, -1, 0, 100000);
-  orthoCamera.position.z = 0;
+  orthoCamera.position.z = 1;
 
   /*const hudGeometry = new THREE.PlaneGeometry(1, 1);
   const hudMaterial = new THREE.MeshBasicMaterial({
