@@ -24601,7 +24601,7 @@ let no = class extends nn {
       textureWidth: 512,
       textureHeight: 512,
       waterNormals: new Uh().load(
-        "https://richardanaya.github.io/hypershape/dist/cc0_assets/waternormals.jpg",
+        "https://richardanaya.github.io/hypershape/dist/assets/waternormals.jpg",
         function(l) {
           l.wrapS = l.wrapT = ii;
         }
