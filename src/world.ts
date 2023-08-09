@@ -29,7 +29,7 @@ const hudScene = new THREE.Scene();
 let orthoCamera!: THREE.OrthographicCamera;
 
 // add ambient light
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+const ambientLight = new THREE.AmbientLight(0xffffff, 1);
 hudScene.add(ambientLight);
 
 function init() {
@@ -68,13 +68,14 @@ function init() {
   renderer.useLegacyLights = false;
   renderer.outputColorSpace = SRGBColorSpace;
   renderer.toneMapping = ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.0;
+  renderer.toneMappingExposure = 1;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = PCFSoftShadowMap;
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.xr.enabled = true;
   container.appendChild(renderer.domElement);
+  renderer.setClearColor(0x16161d, 1);
 
   controls = new CameraControls(camera, renderer.domElement);
   controls.mouseButtons.left = CameraControls.ACTION.TRUCK;
@@ -156,7 +157,8 @@ document.addEventListener("keyup", (event) => {
 });
 
 function render() {
-  renderer.setClearColor(0x16161d, 1);
+  // clear color
+  renderer.clear();
   const delta = clock.getDelta();
   controls.update(delta);
   renderer.render(scene, camera);

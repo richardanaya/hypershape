@@ -1,8 +1,7 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { BoxGeometry, Mesh, MeshStandardMaterial, Object3D } from "three";
-import { MetaverseSpace } from "./mv-space";
-import { findParent } from "./utils";
+import { findParent, getParentSpace, isInHudSpace } from "./utils";
 import { MetaverseForm } from "./mv-form";
 import { getWorld } from "./world";
 
@@ -44,19 +43,12 @@ export class MetaverseInput extends LitElement {
     super.connectedCallback();
     const { space } = this;
 
-    // iterate through parents to find the nearest element with ".space"
-    let parentSpace: Object3D | null = null;
-    let parent = this.parentElement;
-    while (parent !== null) {
-      if (parent instanceof MetaverseSpace) {
-        parentSpace = parent.space;
-        break;
-      }
-      parent = parent.parentElement;
-    }
-    if (parentSpace === null) {
-      throw new Error("No parent space found for mv-model");
-    }
+    let parentSpace = getParentSpace(this);
+    const isHud = isInHudSpace(this);
+    const world = getWorld();
+    const registerFn = isHud
+      ? getWorld().registerInteractiveHudObject.bind(world)
+      : getWorld().registerInteractiveObject.bind(world);
 
     const cube = new Mesh(
       new BoxGeometry(1, 1, 1),
@@ -98,14 +90,14 @@ export class MetaverseInput extends LitElement {
     }
 
     if (this.type === "submit") {
-      getWorld().registerInteractiveObject(cube, () => {
+      registerFn.call(undefined, cube, () => {
         parentForm.submit();
       });
     } else if (this.type === "checkbox") {
       if (this.value === "") {
         this.value = "false";
       }
-      getWorld().registerInteractiveObject(cube, () => {
+      registerFn.call(undefined, cube, () => {
         if (this.value === "true") {
           this.value = "false";
           cube.material.color.setHex(0x666666);
@@ -116,7 +108,7 @@ export class MetaverseInput extends LitElement {
       });
       parentForm.registerInput(this);
     } else if (this.type === "text") {
-      getWorld().registerInteractiveObject(cube, () => {
+      registerFn.call(undefined, cube, () => {
         this.value = window.prompt("Enter text", this.value) ?? "";
         if (this.value === "") {
           cube.material.color.setHex(0x666666);

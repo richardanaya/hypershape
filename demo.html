@@ -9,18 +9,14 @@
     <script type="module" src="./src/main.ts"></script>
   </head>
   <mv-hud>
-    <mv-link href="https://google.com">
-      <mv-image
-        position="-.95,.95,0"
-        scale=".1,.1,.1"
-        src="https://richardanaya.github.io/hypershape/dist/Texture.png"
-      ></mv-image>
+    <mv-form action="/foo" method="post">
+      <mv-input type="submit" position="-.95,.95,0" scale=".1,.1,.1"></mv-input>
       <mv-label
-        position="-.90,.95,0"
+        position="-.85,.95,0"
         scale=".04,.04,.04"
         text="Go to google"
       ></mv-label>
-    </mv-link>
+    </mv-form>
   </mv-hud>
   <mv-space>
     <mv-camera position="0,1.75,3"></mv-camera>
@@ -58,6 +54,7 @@
       <mv-label
         position="0.1,.4,-1"
         for="is_programmer"
+        x
         scale=".04,.04,.04"
         text="Is Programmer?"
       ></mv-label>
