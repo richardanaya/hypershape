@@ -247,10 +247,13 @@ export class MetaverseWorld {
     this.registeredListeners.set(obj, onInteract);
   }
 
-  setHDRITexture(texture: Texture) {
+  setHDRITexture(texture: Texture, background: boolean) {
     const gen = new PMREMGenerator(renderer);
     const envMap = gen.fromEquirectangular(texture).texture;
     scene.environment = envMap;
+    if (background) {
+      scene.background = envMap;
+    }
     texture.dispose();
     gen.dispose();
   }

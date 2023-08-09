@@ -6,7 +6,7 @@ export declare class MetaverseWorld {
     moveCameraAndLook(position: Vector3, lookAt: Vector3): void;
     addWorldInfoToForm(nameToValue: any): void;
     registerInteractiveObject(obj: Object3D, onInteract: () => void): void;
-    setHDRITexture(texture: Texture): void;
+    setHDRITexture(texture: Texture, background: boolean): void;
 }
 export declare function getWorld(): MetaverseWorld;
 export declare type Hand = XRHandSpace;

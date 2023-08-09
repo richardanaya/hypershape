@@ -4,6 +4,7 @@ export declare class MetaverseLight extends LitElement {
     color: string;
     intensity: number;
     src: string;
+    background: string;
     createRenderRoot(): this;
     connectedCallback(): void;
     render(): import("lit-html").TemplateResult<1>;

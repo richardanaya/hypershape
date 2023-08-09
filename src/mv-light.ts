@@ -18,6 +18,9 @@ export class MetaverseLight extends LitElement {
   @property({ type: String, attribute: "src" })
   src = "";
 
+  @property({ type: String, attribute: "background" })
+  background = "true";
+
   createRenderRoot() {
     return this;
   }
@@ -34,7 +37,7 @@ export class MetaverseLight extends LitElement {
       debugger;
       if (this.src !== "") {
         new RGBELoader().load(this.src, (texture) => {
-          getWorld().setHDRITexture(texture);
+          getWorld().setHDRITexture(texture, this.background === "true");
         });
       }
     }

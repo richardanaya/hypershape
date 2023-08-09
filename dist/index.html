@@ -9,7 +9,12 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <mv-space>
-    <mv-light type="ambient" color="#ffffff" intensity="1"></mv-light>
+    <mv-camera position="0,1.75,3"></mv-camera>
+    <mv-light
+      type="hdri"
+      src="https://richardanaya.github.io/hypershape/dist/cc0_assets/kloofendal_43d_clear_puresky_4k.hdr"
+      backkground="true"
+    ></mv-light>
     <mv-link href="https://google.com">
       <mv-label
         position="0.1,0,-1"
@@ -37,19 +42,18 @@
       ></mv-input>
       <mv-label
         position="0.1,.4,-1"
-        for="person_name"
+        for="is_programmer"
         scale=".04,.04,.04"
         text="Is Programmer?"
       ></mv-label>
       <mv-input
-        name="blah"
+        name="is_programmer"
         type="checkbox"
         position="0,.4,-1"
         scale=".1,.1,.1"
       ></mv-input
       ><mv-label
         position="0.1,.2,-1"
-        for="person_name"
         scale=".04,.04,.04"
         text="Submit"
       ></mv-label>
