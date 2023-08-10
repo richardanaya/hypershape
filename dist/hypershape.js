@@ -21609,7 +21609,7 @@ const uS = new lc(16777215, 1);
 Zh.add(uS);
 function dS() {
   const r = document.createElement("div");
-  document.body.appendChild(r), cr = new Wa(), ds = new wt(
+  document.body.appendChild(r), r.style.position = "absolute", r.style.top = "0px", r.style.left = "0px", cr = new Wa(), ds = new wt(
     70,
     window.innerWidth / window.innerHeight,
     0.01,

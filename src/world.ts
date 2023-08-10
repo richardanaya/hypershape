@@ -36,6 +36,11 @@ function init() {
   const container = document.createElement("div");
   document.body.appendChild(container);
 
+  // make absolute positioned in top left
+  container.style.position = "absolute";
+  container.style.top = "0px";
+  container.style.left = "0px";
+
   scene = new Scene();
 
   camera = new PerspectiveCamera(
