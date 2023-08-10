@@ -65,6 +65,8 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
   </mv-link>
 </mv-space>
 ```
+Play with the [demo](https://jsfiddle.net/mg62ctu9/3/).
+
 
 
 # Art
