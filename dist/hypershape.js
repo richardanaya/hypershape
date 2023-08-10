@@ -24042,14 +24042,16 @@ let Ql = class extends Yt {
   connectedCallback() {
     super.connectedCallback();
     const r = gm(this), e = Ot();
-    vE(this).forEach((n) => {
-      n.addEventListener("loaded", (i) => {
-        const s = i.detail.model;
-        r ? this.unregisters.push(
-          e.registerInteractiveHudObject(s, this.onNavigate)
-        ) : this.unregisters.push(
-          e.registerInteractiveObject(s, this.onNavigate)
-        );
+    document.addEventListener("DOMContentLoaded", () => {
+      vE(this).forEach((n) => {
+        n.addEventListener("loaded", (i) => {
+          const s = i.detail.model;
+          r ? this.unregisters.push(
+            e.registerInteractiveHudObject(s, this.onNavigate)
+          ) : this.unregisters.push(
+            e.registerInteractiveObject(s, this.onNavigate)
+          );
+        });
       });
     });
   }

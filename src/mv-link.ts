@@ -20,19 +20,22 @@ export class MetaverseLink extends LitElement {
     super.connectedCallback();
     const isHUD = isInHudSpace(this);
     const world = getWorld();
-    const interactables = getInteractableChildren(this);
-    interactables.forEach((child) => {
-      child.addEventListener("loaded", (e) => {
-        const g: Group = (e as any).detail.model;
-        if (isHUD) {
-          this.unregisters.push(
-            world.registerInteractiveHudObject(g, this.onNavigate)
-          );
-        } else {
-          this.unregisters.push(
-            world.registerInteractiveObject(g, this.onNavigate)
-          );
-        }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const interactables = getInteractableChildren(this);
+      interactables.forEach((child) => {
+        child.addEventListener("loaded", (e) => {
+          const g: Group = (e as any).detail.model;
+          if (isHUD) {
+            this.unregisters.push(
+              world.registerInteractiveHudObject(g, this.onNavigate)
+            );
+          } else {
+            this.unregisters.push(
+              world.registerInteractiveObject(g, this.onNavigate)
+            );
+          }
+        });
       });
     });
   }
