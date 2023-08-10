@@ -47,9 +47,9 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
 * `mv-light` - lightto add to a space
 * `mv-water` - dynamic water element to add to a space
 
-## Learn Hypershape in 5 Examples
+## Learn Hypershape in 5 examples
 
-### Example 1: a 3D model positioned in space that links to another page
+### 3D model positioned in space that links to another page
 
 ```html
 <mv-space>
