@@ -95,7 +95,7 @@ Play with the [demo](https://hypershape.deno.dev/example_2).
   <mv-form action="/login">
     <mv-input type="text" position="0,.2,0" name="email"></mv-input>
     <mv-label position=".1,.2,0" text="Email"></mv-label>
-    <mv-input type="password" position="0,-0,0" name="password"></mv-input>
+    <mv-input type="password" position="0,0,0" name="password"></mv-input>
     <mv-label position=".1,0,0" text="Password"></mv-label>
     <mv-input type="submit" position="0,-.2,0"></mv-input>
     <mv-label position=".1,-.2,0" text="Login"></mv-label>
