@@ -47,7 +47,7 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
 * `mv-light` - light to add to a space
 * `mv-water` - dynamic water element to add to a space
 
-## Learn Hypershape in 5 examples
+## Learn HyperShape in 5 examples
 
 ### 3D model positioned in space that links to another page
 
@@ -82,6 +82,24 @@ Play with the [demo](https://jsfiddle.net/mg62ctu9/3/).
   <mv-water></mv-water>
 </mv-space>
 ```
+
+### A login screen in a HUD
+
+<img width="735" alt="Screenshot 2023-08-10 at 3 02 47 PM" src="https://github.com/richardanaya/hypershape/assets/294042/b3d6b1d7-a8d8-4262-a820-c1c0699b4052">
+
+```html
+<mv-hud>
+  <mv-form action="/login">
+    <mv-input type="text" position="0,.2,0" name="email"></mv-input>
+    <mv-label position=".1,.2,0" text="Email"></mv-label>
+    <mv-input type="password" position="0,-0,0" name="password"></mv-input>
+    <mv-label position=".1,0,0" text="Password"></mv-label>
+    <mv-input type="submit" position="0,-.2,0"></mv-input>
+    <mv-label position=".1,-.2,0" text="Login"></mv-label>
+  </mv-form>
+</mv-hud>
+```
+
 
 
 # Art
