@@ -47,7 +47,7 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
 * `mv-light` - light to add to a space
 * `mv-water` - dynamic water element to add to a space
 
-## Learn HyperShape in 5 examples
+## Learn HyperShape in 4 examples
 
 ### 3D model positioned in space that links to another page
 
@@ -99,6 +99,33 @@ Play with the [demo](https://jsfiddle.net/mg62ctu9/3/).
   </mv-form>
 </mv-hud>
 ```
+
+### Replace content with interactive buttons
+
+
+```html
+<mv-space>
+  <mv-target id="animal">
+    <mv-model
+          src="https://richardanaya.github.io/hypershape/dist/Fox.gltf"
+          position="0,.1,0"
+          scale=".005"
+          rotation="0,45,0"
+        ></mv-model>
+  </mv-target>
+</mv-space>
+<mv-hud>
+  <mv-form action="/rabbit" target="animal">
+    <mv-input type="text" position="0,.2,0" name="email"></mv-input>
+    <mv-label position=".1,.2,0" text="Rabbit"></mv-label>
+  </mv-form>
+  <mv-form action="/fox" target="animal">
+    <mv-input type="text" position="0,.2,0" name="email"></mv-input>
+    <mv-label position=".1,.2,0" text="Fox"></mv-label>
+  </mv-form>
+</mv-hud>
+```
+
 
 
 
