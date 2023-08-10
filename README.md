@@ -8,7 +8,7 @@
 
 Inspired by [vrml](https://en.wikipedia.org/wiki/VRML) and [htmx](https://htmx.org/) — HyperShape is a [hypertext](https://en.wikipedia.org/wiki/Hypertext) for building an interactable server-generated [metaverse](https://en.wikipedia.org/wiki/Metaverse).
 
-See a [demo](https://richardanaya.github.io/hypershape/dist/)
+See a [demo](https://hypershape.deno.dev/)
 
 The markup language shall be known as `MHTL` (metaverse hypertext language)
 
