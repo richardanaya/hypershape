@@ -51,6 +51,8 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
 
 ### 3D model positioned in space that links to another page
 
+<img width="404" alt="Screenshot 2023-08-10 at 2 37 51 PM" src="https://github.com/richardanaya/hypershape/assets/294042/152190d2-aeb6-455d-81bf-8dd213abcefc">
+
 ```html
 <mv-space>
   <mv-link href="https://en.wikipedia.org/wiki/Fox">
