@@ -71,9 +71,9 @@ export class MetaverseLabel extends LitElement {
     space.position.x = x;
     space.position.y = y;
     space.position.z = z;
-    space.rotation.x = rx;
-    space.rotation.y = ry;
-    space.rotation.z = rz;
+    space.rotation.x = rx * (Math.PI / 180);
+    space.rotation.y = ry * (Math.PI / 180);
+    space.rotation.z = rz * (Math.PI / 180);
     space.scale.x = sx;
     space.scale.y = sy;
     space.scale.z = sz;

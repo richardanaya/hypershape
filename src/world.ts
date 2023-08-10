@@ -54,6 +54,9 @@ function init() {
     2000
   );
 
+  camera.position.set(0, 1.6, 2);
+  camera.lookAt(new Vector3(0, 0, 0));
+
   const width = window.innerWidth;
   const height = window.innerHeight;
   const aspect = width / height;
