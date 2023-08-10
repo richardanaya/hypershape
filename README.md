@@ -67,6 +67,21 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
 ```
 Play with the [demo](https://jsfiddle.net/mg62ctu9/3/).
 
+### An ocean and HDRI environment light with a camera looking at the horizon
+
+<img width="681" alt="Screenshot 2023-08-10 at 2 48 54 PM" src="https://github.com/richardanaya/hypershape/assets/294042/29059b04-efba-4251-bcdc-fcc90bb8449d">
+
+```html
+<mv-space>
+  <mv-camera position="0,1.75,3" lookat="0,1.75,0"></mv-camera>
+  <mv-light
+    type="hdri"
+    src="https://richardanaya.github.io/hypershape/dist/assets/kloofendal_43d_clear_puresky_4k.hdr"
+    backkground="true"
+  ></mv-light>
+  <mv-water></mv-water>
+</mv-space>
+```
 
 
 # Art
