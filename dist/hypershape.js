@@ -24075,7 +24075,7 @@ var bE = Object.defineProperty, AE = Object.getOwnPropertyDescriptor, xr = (r, e
 };
 let Pi = class extends Yt {
   constructor() {
-    super(...arguments), this.action = "", this.method = "", this.target = "", this.timeout = "", this.timer = "", this.inputs = [];
+    super(...arguments), this.action = "", this.method = "GET", this.target = "", this.timeout = "", this.timer = "", this.inputs = [];
   }
   createRenderRoot() {
     return this;

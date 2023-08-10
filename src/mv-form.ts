@@ -9,7 +9,7 @@ export class MetaverseForm extends LitElement {
   action = "";
 
   @property({ type: String, attribute: "method" })
-  method = "";
+  method = "GET";
 
   @property({ type: String, attribute: "target" })
   target = "";
