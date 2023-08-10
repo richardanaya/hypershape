@@ -6,7 +6,7 @@
 
 ### Hypertext for the metaverse
 
-Inspired by [vrml](https://en.wikipedia.org/wiki/VRML), [a-frame](https://aframe.io/), and [htmx](https://htmx.org/) — hypershape is a [hypertext](https://en.wikipedia.org/wiki/Hypertext) for building an interactable server-generated [metaverse](https://en.wikipedia.org/wiki/Metaverse).
+Inspired by [vrml](https://en.wikipedia.org/wiki/VRML) and [htmx](https://htmx.org/) — HyperShape is a [hypertext](https://en.wikipedia.org/wiki/Hypertext) for building an interactable server-generated [metaverse](https://en.wikipedia.org/wiki/Metaverse).
 
 See a [demo](https://richardanaya.github.io/hypershape/dist/)
 
@@ -44,7 +44,7 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
 #### Content Elements
 * `mv-model` - 3D model to add to a space
 * `mv-label` - single line of text to add to a space
-* `mv-light` - lightto add to a space
+* `mv-light` - light to add to a space
 * `mv-water` - dynamic water element to add to a space
 
 ## Learn Hypershape in 5 examples
