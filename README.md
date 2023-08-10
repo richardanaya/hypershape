@@ -105,7 +105,7 @@ Play with the [demo](https://jsfiddle.net/mg62ctu9/3/).
 
 ```html
 <mv-space>
-  <mv-target id="animal">
+  <mv-target id="my_object">
     <mv-model
           src="https://richardanaya.github.io/hypershape/dist/Fox.gltf"
           position="0,.1,0"
@@ -115,11 +115,11 @@ Play with the [demo](https://jsfiddle.net/mg62ctu9/3/).
   </mv-target>
 </mv-space>
 <mv-hud>
-  <mv-form action="/rabbit" target="animal">
+  <mv-form action="/avocado" target="my_object">
     <mv-input type="submit" position="0,0,0"></mv-input>
-    <mv-label position=".1,0,0" text="Rabbit"></mv-label>
+    <mv-label position=".1,0,0" text="Avocado"></mv-label>
   </mv-form>
-  <mv-form action="/fox" target="animal">
+  <mv-form action="/fox" target="my_object">
     <mv-input type="submit" position="0,-.2,0"></mv-input>
     <mv-label position=".1,.-2,0" text="Fox"></mv-label>
   </mv-form>
