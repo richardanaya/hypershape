@@ -81,8 +81,8 @@ export class MetaverseInput extends LitElement {
     space.rotation.y = ry * (Math.PI / 180);
     space.rotation.z = rz * (Math.PI / 180);
     space.scale.x = sx;
-    space.scale.y = sy;
-    space.scale.z = sz;
+    space.scale.y = sy === undefined ? sx : sy;
+    space.scale.z = sz === undefined ? sx : sz;
     this.parentSpace.add(space);
 
     const parentForm = findParent(
@@ -115,7 +115,7 @@ export class MetaverseInput extends LitElement {
         })
       );
       parentForm.registerInput(this);
-    } else if (this.type === "text") {
+    } else if (this.type === "text" || this.type === "password") {
       this.unregisters.push(
         registerFn.call(undefined, cube, () => {
           this.value = window.prompt("Enter text", this.value) ?? "";

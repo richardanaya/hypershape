@@ -23909,7 +23909,7 @@ let li = class extends Yt {
       );
     });
     const [t, n, i] = this.positon.split(",").map((u) => parseFloat(u)), [s, o, a] = this.rotation.split(",").map((u) => parseFloat(u)), [c, l, h] = this.scale.split(",").map((u) => parseFloat(u));
-    r.position.x = t, r.position.y = n, r.position.z = i, r.rotation.x = s * (Math.PI / 180), r.rotation.y = o * (Math.PI / 180), r.rotation.z = a * (Math.PI / 180), r.scale.x = c, r.scale.y = l, r.scale.z = h, e.add(r);
+    r.position.x = t, r.position.y = n, r.position.z = i, r.rotation.x = s * (Math.PI / 180), r.rotation.y = o * (Math.PI / 180), r.rotation.z = a * (Math.PI / 180), r.scale.x = c, r.scale.y = l === void 0 ? c : l, r.scale.z = h === void 0 ? c : h, e.add(r);
   }
   disconnectedCallback() {
     super.disconnectedCallback(), ps(this).remove(this.space);
@@ -23994,7 +23994,7 @@ let hi = class extends Yt {
       );
     });
     const [t, n, i] = this.positon.split(",").map((u) => parseFloat(u)), [s, o, a] = this.rotation.split(",").map((u) => parseFloat(u)), [c, l, h] = this.scale.split(",").map((u) => parseFloat(u));
-    r.position.x = t, r.position.y = n, r.position.z = i, r.rotation.x = s * (Math.PI / 180), r.rotation.y = o * (Math.PI / 180), r.rotation.z = a * (Math.PI / 180), r.scale.x = c, r.scale.y = l, r.scale.z = h, this.parentSpace.add(r);
+    r.position.x = t, r.position.y = n, r.position.z = i, r.rotation.x = s * (Math.PI / 180), r.rotation.y = o * (Math.PI / 180), r.rotation.z = a * (Math.PI / 180), r.scale.x = c, r.scale.y = l === void 0 ? c : l, r.scale.z = h === void 0 ? c : h, this.parentSpace.add(r);
   }
   disconnectedCallback() {
     var r;
@@ -24168,7 +24168,7 @@ let bn = class extends Yt {
       })
     );
     const [s, o, a] = this.positon.split(",").map((_) => parseFloat(_)), [c, l, h] = this.rotation.split(",").map((_) => parseFloat(_)), [u, d, f] = this.scale.split(",").map((_) => parseFloat(_));
-    r.position.x = s, r.position.y = o, r.position.z = a, r.rotation.x = c * (Math.PI / 180), r.rotation.y = l * (Math.PI / 180), r.rotation.z = h * (Math.PI / 180), r.scale.x = u, r.scale.y = d, r.scale.z = f, this.parentSpace.add(r);
+    r.position.x = s, r.position.y = o, r.position.z = a, r.rotation.x = c * (Math.PI / 180), r.rotation.y = l * (Math.PI / 180), r.rotation.z = h * (Math.PI / 180), r.scale.x = u, r.scale.y = d === void 0 ? u : d, r.scale.z = f === void 0 ? u : f, this.parentSpace.add(r);
     const m = Jh(
       this,
       (_) => _ instanceof Pi
@@ -24183,7 +24183,7 @@ let bn = class extends Yt {
       n.call(void 0, i, () => {
         this.value === "true" ? (this.value = "false", i.material.color.setHex(6710886)) : (this.value = "true", i.material.color.setHex(16777215));
       })
-    ), m.registerInput(this)) : this.type === "text" && (this.unregisters.push(
+    ), m.registerInput(this)) : (this.type === "text" || this.type === "password") && (this.unregisters.push(
       n.call(void 0, i, () => {
         var _;
         this.value = (_ = window.prompt("Enter text", this.value)) != null ? _ : "", this.value === "" ? i.material.color.setHex(6710886) : i.material.color.setHex(16777215);
@@ -24340,7 +24340,7 @@ let kn = class extends Yt {
       }
     );
     const [n, i, s] = this.positon.split(",").map((d) => parseFloat(d)), [o, a, c] = this.rotation.split(",").map((d) => parseFloat(d)), [l, h, u] = this.scale.split(",").map((d) => parseFloat(d));
-    r.position.x = n, r.position.y = i, r.position.z = s, r.rotation.x = o * (Math.PI / 180), r.rotation.y = a * (Math.PI / 180), r.rotation.z = c * (Math.PI / 180), r.scale.x = l, r.scale.y = h, r.scale.z = u, this.parentSpace.add(r);
+    r.position.x = n, r.position.y = i, r.position.z = s, r.rotation.x = o * (Math.PI / 180), r.rotation.y = a * (Math.PI / 180), r.rotation.z = c * (Math.PI / 180), r.scale.x = l, r.scale.y = h === void 0 ? l : h, r.scale.z = u === void 0 ? l : u, this.parentSpace.add(r);
   }
   disconnectedCallback() {
     var r;

@@ -7,13 +7,17 @@
     <script type="module" src="./src/main.ts"></script>
   </head>
   <mv-space>
-    <mv-link href="https://en.wikipedia.org/wiki/Fox">
-      <mv-model
-        src="https://richardanaya.github.io/hypershape/dist/Fox.gltf"
-        position="0,.1,0"
-        scale=".005"
-        rotation="0,45,0"
-      ></mv-model>
-    </mv-link>
+    <mv-water></mv-water>
+    <mv-light type="ambient"></mv-light>
   </mv-space>
+  <mv-hud>
+    <mv-form action="/login">
+      <mv-input type="text" position="0,.2,0" name="email"></mv-input>
+      <mv-label position=".1,.2,0" text="Email"></mv-label>
+      <mv-input type="text" position="0,-0,0" name="password"></mv-input>
+      <mv-label position=".1,0,0" text="Password"></mv-label>
+      <mv-input type="submit" position="0,-.2,0"></mv-input>
+      <mv-label position=".1,-.2,0" text="Login"></mv-label>
+    </mv-form>
+  </mv-hud>
 </html>
