@@ -65,7 +65,8 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
   </mv-link>
 </mv-space>
 ```
-Play with the [demo](https://jsfiddle.net/mg62ctu9/3/).
+
+Play with the [demo](https://hypershape.deno.dev/example_1).
 
 ### An ocean and HDRI environment light with a camera looking at the horizon
 
@@ -82,6 +83,8 @@ Play with the [demo](https://jsfiddle.net/mg62ctu9/3/).
   <mv-water></mv-water>
 </mv-space>
 ```
+
+Play with the [demo](https://hypershape.deno.dev/example_2).
 
 ### A login screen in a HUD
 
@@ -100,7 +103,11 @@ Play with the [demo](https://jsfiddle.net/mg62ctu9/3/).
 </mv-hud>
 ```
 
+Play with the [demo](https://hypershape.deno.dev/example_3).
+
 ### Replace content with interactive buttons
+
+<img width="611" alt="Screenshot 2023-08-10 at 3 47 30 PM" src="https://github.com/richardanaya/hypershape/assets/294042/a1d9447c-742d-4e41-9404-460d23b24c8d">
 
 
 ```html
@@ -126,8 +133,7 @@ Play with the [demo](https://jsfiddle.net/mg62ctu9/3/).
 </mv-hud>
 ```
 
-
-
+Play with the [demo](https://hypershape.deno.dev/example_4).
 
 # Art
 
