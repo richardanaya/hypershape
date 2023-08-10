@@ -54,6 +54,7 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
 <img width="404" alt="Screenshot 2023-08-10 at 2 37 51 PM" src="https://github.com/richardanaya/hypershape/assets/294042/152190d2-aeb6-455d-81bf-8dd213abcefc">
 
 ```html
+<script src="https://unpkg.com/hypershape/dist/hypershape.js"></script>
 <mv-space>
   <mv-link href="https://en.wikipedia.org/wiki/Fox">
     <mv-model
@@ -73,6 +74,7 @@ Play with the [demo](https://hypershape.deno.dev/example_1).
 <img width="681" alt="Screenshot 2023-08-10 at 2 48 54 PM" src="https://github.com/richardanaya/hypershape/assets/294042/29059b04-efba-4251-bcdc-fcc90bb8449d">
 
 ```html
+<script src="https://unpkg.com/hypershape/dist/hypershape.js"></script>
 <mv-space>
   <mv-camera position="0,1.75,3" lookat="0,1.75,0"></mv-camera>
   <mv-light
@@ -91,6 +93,7 @@ Play with the [demo](https://hypershape.deno.dev/example_2).
 <img width="735" alt="Screenshot 2023-08-10 at 3 02 47 PM" src="https://github.com/richardanaya/hypershape/assets/294042/b3d6b1d7-a8d8-4262-a820-c1c0699b4052">
 
 ```html
+<script src="https://unpkg.com/hypershape/dist/hypershape.js"></script>
 <mv-hud>
   <mv-form action="/login">
     <mv-input type="text" position="0,.2,0" name="email"></mv-input>
@@ -111,6 +114,7 @@ Play with the [demo](https://hypershape.deno.dev/example_3).
 
 
 ```html
+<script src="https://unpkg.com/hypershape/dist/hypershape.js"></script>
 <mv-space>
   <mv-target id="my_object">
     <mv-model
