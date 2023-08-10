@@ -53,8 +53,13 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
 
 ```html
 <mv-space>
-  <mv-link href="https://en.wikipedia.org/wiki/Fox"> 
-    <mv-model src="https://richardanaya.github.io/hypershape/dist/Fox.gltf" position="0,.1,0" scale="0.4"></mv-model>
+  <mv-link href="https://en.wikipedia.org/wiki/Fox">
+    <mv-model
+      src="https://richardanaya.github.io/hypershape/dist/Fox.gltf"
+      position="0,.1,0"
+      scale=".005"
+      rotation="0,45,0"
+    ></mv-model>
   </mv-link>
 </mv-space>
 ```
