@@ -116,12 +116,12 @@ Play with the [demo](https://jsfiddle.net/mg62ctu9/3/).
 </mv-space>
 <mv-hud>
   <mv-form action="/rabbit" target="animal">
-    <mv-input type="text" position="0,.2,0" name="email"></mv-input>
-    <mv-label position=".1,.2,0" text="Rabbit"></mv-label>
+    <mv-input type="submit" position="0,0,0"></mv-input>
+    <mv-label position=".1,0,0" text="Rabbit"></mv-label>
   </mv-form>
   <mv-form action="/fox" target="animal">
-    <mv-input type="text" position="0,.2,0" name="email"></mv-input>
-    <mv-label position=".1,.2,0" text="Fox"></mv-label>
+    <mv-input type="submit" position="0,-.2,0"></mv-input>
+    <mv-label position=".1,.-2,0" text="Fox"></mv-label>
   </mv-form>
 </mv-hud>
 ```
