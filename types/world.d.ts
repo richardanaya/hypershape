@@ -10,6 +10,7 @@ export declare class MetaverseWorld {
     registerInteractiveObject(obj: Object3D, onInteract: () => void): () => void;
     registerInteractiveHudObject(obj: Object3D, onInteract: () => void): () => void;
     setHDRITexture(texture: Texture, background: boolean): void;
+    removeDefaultLight(): void;
 }
 export declare function getWorld(): MetaverseWorld;
 export declare type Hand = XRHandSpace;

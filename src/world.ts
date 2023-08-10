@@ -32,6 +32,8 @@ let orthoCamera!: THREE.OrthographicCamera;
 const ambientLight = new THREE.AmbientLight(0xffffff, 1);
 hudScene.add(ambientLight);
 
+const defaultLight = new THREE.AmbientLight(0xffffff, 1);
+
 function init() {
   const container = document.createElement("div");
   document.body.appendChild(container);
@@ -42,6 +44,8 @@ function init() {
   container.style.left = "0px";
 
   scene = new Scene();
+
+  scene.add(defaultLight);
 
   camera = new PerspectiveCamera(
     70,
@@ -69,7 +73,6 @@ function init() {
     alpha: true,
     preserveDrawingBuffer: true,
   });
-  renderer.autoClearColor = false;
   renderer.useLegacyLights = false;
   renderer.outputColorSpace = SRGBColorSpace;
   renderer.toneMapping = ACESFilmicToneMapping;
@@ -162,11 +165,12 @@ document.addEventListener("keyup", (event) => {
 });
 
 function render() {
-  // clear color
-  renderer.clear();
   const delta = clock.getDelta();
   controls.update(delta);
+
+  renderer.autoClearColor = true;
   renderer.render(scene, camera);
+  renderer.autoClearColor = false;
   renderer.clearDepth();
   renderer.render(hudScene, orthoCamera);
 }
@@ -362,6 +366,10 @@ export class MetaverseWorld {
     }
     texture.dispose();
     gen.dispose();
+  }
+
+  removeDefaultLight() {
+    scene.remove(defaultLight);
   }
 }
 

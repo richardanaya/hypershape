@@ -35,10 +35,12 @@ export class MetaverseLight extends LitElement {
       // set ambient light
       this.light = new AmbientLight(this.color, this.intensity);
       scene.add(this.light);
+      getWorld().removeDefaultLight();
     } else if (this.type == "hdri") {
       if (this.src !== "") {
         new RGBELoader().load(this.src, (texture) => {
           getWorld().setHDRITexture(texture, this.background === "true");
+          getWorld().removeDefaultLight();
         });
       }
     }
