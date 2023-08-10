@@ -30,17 +30,23 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
 
 ### MHTL Elements
 
-- `mv-space`
-- `mv-model`
-- `mv-link`
-- `mv-form`
-- `mv-input`
-- `mv-label`
-- `mv-light`
-- `mv-camera`
-- `mv-water`
-- `mv-target`
-- `mv-hud`
+#### Spatial elements
+* `mv-space` - container for the root space which content and controls are attached to
+* `mv-hud` - container for the root space which content and controls are attached to in the view of the camera
+* `mv-camera` - allows you specify the position of the camera in space
+
+#### Hypermedia control elements
+* `mv-link` - allows you define elements that navigate the browser to a different url
+* `mv-form` - allows you to submit data to hypermedia servers and either navigate the whole page or replace a small part of it with the returned hypertext
+* `mv-input` - special controls that add data to the form data to be submitted
+* `mv-target` - allows you to specify a target where content returned from the form will be placed
+
+#### Content Elements
+* `mv-model` - 3D model to add to a space
+* `mv-label` - single line of text to add to a space
+* `mv-light` - lightto add to a space
+* `mv-water` - dynamic water element to add to a space
+
 
 # Art
 
