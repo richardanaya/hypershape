@@ -34,6 +34,8 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
 * `mv-space` - container for the root space which content and controls are attached to
 * `mv-hud` - container for the root space which content and controls are attached to in the view of the camera
 * `mv-camera` - allows you specify the position of the camera in space
+  * `position` - positioning attribute for camera (e.g. "1,1,1")
+  * `lookat` - attribute to set a target for camera to look at (e.g. "1,1,1")
 
 #### Hypermedia control elements
 * `mv-link` - allows you define elements that navigate the browser to a different url
