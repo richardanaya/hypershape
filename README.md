@@ -47,6 +47,15 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
 * `mv-light` - light to add to a space
 * `mv-water` - dynamic water element to add to a space
 
+## Project status
+
+* basic elements are implemented
+* want to add less distructive changes to 3D scene when dom changes
+* want to add more lights
+* want to support more 3D formats
+* want to add better input controls
+* want to add VR support with teleport
+
 ## Learn HyperShape in 4 examples
 
 ### 3D model positioned in space that links to another page
