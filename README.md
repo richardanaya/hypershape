@@ -49,7 +49,7 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
 
 ## Project status
 
-* basic elements are implemented
+* basic elements are implemented and functional
 * want to add less distructive changes to 3D scene when dom changes
 * want to add more lights
 * want to support more 3D formats
