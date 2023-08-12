@@ -34,19 +34,44 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
 * `mv-space` - container for the root space which content and controls are attached to
 * `mv-hud` - container for the root space which content and controls are attached to in the view of the camera
 * `mv-camera` - allows you specify the position of the camera in space
-  * `position` - positioning attribute for camera (e.g. "1,1,1")
-  * `lookat` - attribute to set a target for camera to look at (e.g. "1,1,1")
+  * `position` - positioning attribute for camera (e.g. `1,1,1`)
+  * `lookat` - attribute to set a target for camera to look at (e.g. `1,1,1`)
 
 #### Hypermedia control elements
 * `mv-link` - allows you define elements that navigate the browser to a different url
+  * `href` - hypertext reference attribute that specifies a url child objects will navigate the browser to when clicked
 * `mv-form` - allows you to submit data to hypermedia servers and either navigate the whole page or replace a small part of it with the returned hypertext
+  * `action` - url attribute where the form data will be sent to either as url query parameters for `GET` requests or form data for `POST` requests
+  * `method` - http method attribute to be used for the action `GET`/`POST` (default `GET`)
+  * `timout` - attribute used for setting a timeout (in milliseconds) after which the form will auto submit
+  * `timer` - attribute used for setting a timer interval (in milliseconds) which the form will auto submit each interval
+  * `target` - attribute used for targeting the ID of the element you want to replace the inner dom of instead of a full screen navigation
 * `mv-input` - special controls that add data to the form data to be submitted
+  * `type` - input type attribute (`text`,`password`,`checkbox`)
+  * `name` - name attribute that will determine the name to be used in form submission data
+  * `position` - positioning attribute for 3D object (e.g. `1,1,1`)
+  * `rotation` - rotation attribute for 3D object in degrees (e.g. `0,90,0`)
+  * `scale` - scaling attribute for 3D object (e.g. `1,1,1` or `.4`)
 * `mv-target` - allows you to specify a target where content returned from the form will be placed
+  * `id` - identifier attribute used for targeting by forms
 
 #### Content Elements
 * `mv-model` - 3D model to add to a space
+  * `src` - attribute for specifing the GLTF file to show
+  * `position` - positioning attribute for 3D object (e.g. `1,1,1`)
+  * `rotation` - rotation attribute for 3D object in degrees (e.g. `0,90,0`)
+  * `scale` - scaling attribute for 3D object (e.g. `1,1,1` or `.4`)
 * `mv-label` - single line of text to add to a space
+  * `text` - text attribute that determines the text to show
+  * `position` - positioning attribute for 3D object (e.g. `1,1,1`)
+  * `rotation` - rotation attribute for 3D object in degrees (e.g. `0,90,0`)
+  * `scale` - scaling attribute for 3D object (e.g. `1,1,1` or `.4`)
 * `mv-light` - light to add to a space
+  * `type` - light type attribute to specify the kind of light to use `ambient` or "`hdri`
+  * `src` - src attribute for specifing hdri to use
+  * `background` - boolean attribute for specifing if we ant hdri to show as background too
+  * `color` - color attribute for ambient light
+  * `intensity` - intensity for ambient light (default `1`)
 * `mv-water` - dynamic water element to add to a space
 
 ## Project status
