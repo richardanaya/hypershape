@@ -31,57 +31,61 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
 ### MHTL Elements
 
 #### Spatial elements
-* `mv-space` - container for the root space which content and controls are attached to
-* `mv-hud` - container for the root space which content and controls are attached to in the view of the camera
-* `mv-camera` - allows you specify the position of the camera in space
-  * `position` - positioning attribute for camera (e.g. `1,1,1`)
-  * `lookat` - attribute to set a target for camera to look at (e.g. `1,1,1`)
+
+- `mv-space` - container for the root space which content and controls are attached to
+  - `id` - identifier attribute used for targeting by forms
+- `mv-hud` - container for the root space which content and controls are attached to in the view of the camera
+- `mv-camera` - allows you specify the position of the camera in space
+  - `position` - positioning attribute for camera (e.g. `1,1,1`)
+  - `lookat` - attribute to set a target for camera to look at (e.g. `1,1,1`)
 
 #### Hypermedia control elements
-* `mv-link` - allows you define elements that navigate the browser to a different url
-  * `href` - hypertext reference attribute that specifies a url child objects will navigate the browser to when clicked
-* `mv-form` - allows you to submit data to hypermedia servers and either navigate the whole page or replace a small part of it with the returned hypertext
-  * `action` - url attribute where the form data will be sent to either as url query parameters for `GET` requests or form data for `POST` requests
-  * `method` - http method attribute to be used for the action `GET`/`POST` (default `GET`)
-  * `timout` - attribute used for setting a timeout (in milliseconds) after which the form will auto submit
-  * `timer` - attribute used for setting a timer interval (in milliseconds) which the form will auto submit each interval
-  * `target` - attribute used for targeting the ID of the element you want to replace the inner dom of instead of a full screen navigation
-* `mv-input` - special controls that add data to the form data to be submitted
-  * `type` - input type attribute (`text`,`password`,`checkbox`)
-  * `name` - name attribute that will determine the name to be used in form submission data
-  * `position` - positioning attribute for 3D object (e.g. `1,1,1`)
-  * `rotation` - rotation attribute for 3D object in degrees (e.g. `0,90,0`)
-  * `scale` - scaling attribute for 3D object (e.g. `1,1,1` or `.4`)
-* `mv-target` - allows you to specify a target where content returned from the form will be placed
-  * `id` - identifier attribute used for targeting by forms
+
+- `mv-link` - allows you define elements that navigate the browser to a different url
+  - `href` - hypertext reference attribute that specifies a url child objects will navigate the browser to when clicked
+- `mv-form` - allows you to submit data to hypermedia servers and either navigate the whole page or replace a small part of it with the returned hypertext
+  - `action` - url attribute where the form data will be sent to either as url query parameters for `GET` requests or form data for `POST` requests
+  - `method` - http method attribute to be used for the action `GET`/`POST` (default `GET`)
+  - `timout` - attribute used for setting a timeout (in milliseconds) after which the form will auto submit
+  - `timer` - attribute used for setting a timer interval (in milliseconds) which the form will auto submit each interval
+  - `target` - attribute used for targeting the ID of the element you want to replace the inner dom of instead of a full screen navigation
+- `mv-input` - special controls that add data to the form data to be submitted
+  - `type` - input type attribute (`text`,`password`,`checkbox`)
+  - `name` - name attribute that will determine the name to be used in form submission data
+  - `position` - positioning attribute for 3D object (e.g. `1,1,1`)
+  - `rotation` - rotation attribute for 3D object in degrees (e.g. `0,90,0`)
+  - `scale` - scaling attribute for 3D object (e.g. `1,1,1` or `.4`)
+- `mv-target` - allows you to specify a target where content returned from the form will be placed
+  - `id` - identifier attribute used for targeting by forms
 
 #### Content Elements
-* `mv-model` - 3D model to add to a space
-  * `src` - attribute for specifing the GLTF file to show
-  * `position` - positioning attribute for 3D object (e.g. `1,1,1`)
-  * `rotation` - rotation attribute for 3D object in degrees (e.g. `0,90,0`)
-  * `scale` - scaling attribute for 3D object (e.g. `1,1,1` or `.4`)
-* `mv-label` - single line of text to add to a space
-  * `text` - text attribute that determines the text to show
-  * `position` - positioning attribute for 3D object (e.g. `1,1,1`)
-  * `rotation` - rotation attribute for 3D object in degrees (e.g. `0,90,0`)
-  * `scale` - scaling attribute for 3D object (e.g. `1,1,1` or `.4`)
-* `mv-light` - light to add to a space
-  * `type` - light type attribute to specify the kind of light to use `ambient` or "`hdri`
-  * `src` - src attribute for specifing hdri to use
-  * `background` - boolean attribute for specifing if we ant hdri to show as background too
-  * `color` - color attribute for ambient light
-  * `intensity` - intensity for ambient light (default `1`)
-* `mv-water` - dynamic water element to add to a space
+
+- `mv-model` - 3D model to add to a space
+  - `src` - attribute for specifing the GLTF file to show
+  - `position` - positioning attribute for 3D object (e.g. `1,1,1`)
+  - `rotation` - rotation attribute for 3D object in degrees (e.g. `0,90,0`)
+  - `scale` - scaling attribute for 3D object (e.g. `1,1,1` or `.4`)
+- `mv-label` - single line of text to add to a space
+  - `text` - text attribute that determines the text to show
+  - `position` - positioning attribute for 3D object (e.g. `1,1,1`)
+  - `rotation` - rotation attribute for 3D object in degrees (e.g. `0,90,0`)
+  - `scale` - scaling attribute for 3D object (e.g. `1,1,1` or `.4`)
+- `mv-light` - light to add to a space
+  - `type` - light type attribute to specify the kind of light to use `ambient` or "`hdri`
+  - `src` - src attribute for specifing hdri to use
+  - `background` - boolean attribute for specifing if we ant hdri to show as background too
+  - `color` - color attribute for ambient light
+  - `intensity` - intensity for ambient light (default `1`)
+- `mv-water` - dynamic water element to add to a space
 
 ## Project status
 
-* basic elements are implemented and functional
-* want to add less distructive changes to 3D scene when dom changes
-* want to add more lights
-* want to support more 3D formats
-* want to add better input controls
-* want to add VR support with teleport
+- basic elements are implemented and functional
+- want to add less distructive changes to 3D scene when dom changes
+- want to add more lights
+- want to support more 3D formats
+- want to add better input controls
+- want to add VR support with teleport
 
 ## Learn HyperShape in 4 examples
 
@@ -145,17 +149,14 @@ Play with the [demo](https://hypershape.deno.dev/example_3).
 
 <img width="611" alt="Screenshot 2023-08-10 at 3 47 30 PM" src="https://github.com/richardanaya/hypershape/assets/294042/a1d9447c-742d-4e41-9404-460d23b24c8d">
 
-
 ```html
-<mv-space>
-  <mv-target id="my_object">
-    <mv-model
-          src="https://richardanaya.github.io/hypershape/dist/Fox.gltf"
-          position="0,.1,0"
-          scale=".005"
-          rotation="0,45,0"
-        ></mv-model>
-  </mv-target>
+<mv-space id="my_object">
+  <mv-model
+    src="https://richardanaya.github.io/hypershape/dist/Fox.gltf"
+    position="0,.1,0"
+    scale=".005"
+    rotation="0,45,0"
+  ></mv-model>
 </mv-space>
 <mv-hud>
   <mv-form action="/avocado" target="my_object">
@@ -174,4 +175,3 @@ Play with the [demo](https://hypershape.deno.dev/example_4).
 # Art
 
 ![image](https://github.com/richardanaya/hypershape/assets/294042/8da712bf-ce75-48b5-ac14-4ff8a759f146)
-
