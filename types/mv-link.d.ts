@@ -6,7 +6,7 @@ export declare class MetaverseLink extends LitElement {
     connectedCallback(): void;
     disconnectedCallback(): void;
     onNavigate: () => void;
-    render(): import("lit-html").TemplateResult<1>;
+    render(): import("lit").TemplateResult<1>;
 }
 declare global {
     interface HTMLElementTagNameMap {

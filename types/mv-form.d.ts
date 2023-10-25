@@ -11,9 +11,9 @@ export declare class MetaverseForm extends LitElement {
     createRenderRoot(): this;
     connectedCallback(): void;
     disconnectedCallback(): void;
-    render(): import("lit-html").TemplateResult<1>;
+    render(): import("lit").TemplateResult<1>;
     registerInput(input: MetaverseInput): void;
-    submit(): Promise<void>;
+    submit(intersection?: THREE.Intersection, submitname?: string, submitValue?: string): Promise<void>;
 }
 declare global {
     interface HTMLElementTagNameMap {

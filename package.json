@@ -1,7 +1,7 @@
 {
   "name": "hypershape",
   "description": "A hypertext for the metaverse",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "type": "module",
   "main": "dist/hypershape.js",
   "exports": {

@@ -50,6 +50,7 @@ HyperShape aims to capitalize on these two ideas as it's foundations to make a m
   - `timer` - attribute used for setting a timer interval (in milliseconds) which the form will auto submit each interval
   - `target` - attribute used for targeting the ID of the element you want to replace the inner dom of instead of a full screen navigation
 - `mv-input` - special controls that add data to the form data to be submitted
+  - `src` - model to use for input
   - `type` - input type attribute (`text`,`password`,`checkbox`)
   - `name` - name attribute that will determine the name to be used in form submission data
   - `position` - positioning attribute for 3D object (e.g. `1,1,1`)

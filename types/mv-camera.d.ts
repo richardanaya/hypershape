@@ -4,7 +4,7 @@ export declare class MetaverseCamera extends LitElement {
     position: string;
     createRenderRoot(): this;
     connectedCallback(): void;
-    render(): import("lit-html").TemplateResult<1>;
+    render(): import("lit").TemplateResult<1>;
 }
 declare global {
     interface HTMLElementTagNameMap {

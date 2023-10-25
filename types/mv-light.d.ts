@@ -10,7 +10,7 @@ export declare class MetaverseLight extends LitElement {
     light: Object3D | undefined;
     connectedCallback(): void;
     disconnectedCallback(): void;
-    render(): import("lit-html").TemplateResult<1>;
+    render(): import("lit").TemplateResult<1>;
 }
 declare global {
     interface HTMLElementTagNameMap {

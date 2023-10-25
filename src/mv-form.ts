@@ -62,19 +62,56 @@ export class MetaverseForm extends LitElement {
     this.inputs.push(input);
   }
 
-  async submit() {
+  async submit(
+    intersection?: THREE.Intersection,
+    submitname?: string,
+    submitValue?: string
+  ) {
     const nameToValue = this.inputs.reduce((acc, input) => {
       if (input.name === "") return acc;
       acc[input.name] = input.value;
       return acc;
     }, {} as any);
     getWorld().addWorldInfoToForm(nameToValue);
+
+    if (submitname && submitValue) {
+      nameToValue[submitname] = submitValue;
+    }
+
+    // add interaction info
+    if (intersection) {
+      const { face, faceIndex, distance, normal, uv, point } = intersection;
+      if (face) {
+        nameToValue[
+          "mv-intersection-material-index"
+        ] = `${face?.materialIndex}`;
+      }
+      if (faceIndex !== undefined) {
+        nameToValue["mv-intersection-face-index"] = `${faceIndex}`;
+      }
+      if (distance !== undefined) {
+        nameToValue["mv-intersection-distance"] = `${distance}`;
+      }
+      if (normal) {
+        nameToValue[
+          "mv-intersection-normal"
+        ] = `${normal.x},${normal.y},${normal.z}`;
+      }
+      if (uv) {
+        nameToValue["mv-intersection-uv"] = `${uv.x},${uv.y}`;
+      }
+      if (point) {
+        nameToValue["mv-intersection-pos"] = `${point.x},${point.y},${point.z}`;
+      }
+    }
+
     if (this.target === "") {
       // create a new invisible form and submit it
       const form = document.createElement("form");
       form.style.display = "none";
       form.method = this.method;
       form.action = this.action;
+      // set submit value
       for (const name in nameToValue) {
         const value = nameToValue[name];
         const input = document.createElement("input");

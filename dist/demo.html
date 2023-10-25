@@ -6,14 +6,26 @@
     <title>Demo Metaverse</title>
     
     <mv-space>
-      <mv-link href="https://en.wikipedia.org/wiki/Fox">
-        <mv-model
+      <mv-form>
+        <mv-input
+          type="submit"
+          name="blah"
+          value="123"
           src="https://richardanaya.github.io/hypershape/dist/Fox.gltf"
           position="0,.1,0"
           scale=".005"
           rotation="0,45,0"
-        ></mv-model>
-      </mv-link>
+        ></mv-input>
+        <mv-input
+          type="submit"
+          name="blah"
+          value="444"
+          src="https://richardanaya.github.io/hypershape/dist/Fox.gltf"
+          position="0,-.1,0"
+          scale=".005"
+          rotation="0,45,0"
+        ></mv-input>
+      </mv-form>
     </mv-space>
     <script type="module" crossorigin src="/hypershape.js"></script>
   </head>

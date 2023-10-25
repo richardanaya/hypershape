@@ -182,8 +182,10 @@ export class MetaverseWorld {
   scene: Scene;
   hudScene: Scene;
 
-  registeredListeners: Map<Object3D, () => void> = new Map();
-  registeredHudListeners: Map<Object3D, () => void> = new Map();
+  registeredListeners: Map<Object3D, (i: THREE.Intersection) => void> =
+    new Map();
+  registeredHudListeners: Map<Object3D, (i: THREE.Intersection) => void> =
+    new Map();
 
   constructor(scene: Scene, hudScene: Scene) {
     this.scene = scene;
@@ -245,7 +247,7 @@ export class MetaverseWorld {
           }
 
           if (listener) {
-            listener();
+            listener(intersect);
             break;
           } else {
             // itereate through all parents until found registered
@@ -256,7 +258,7 @@ export class MetaverseWorld {
                 listener = this.registeredHudListeners.get(parent);
               }
               if (listener) {
-                listener();
+                listener(intersect);
                 break;
               }
               parent = parent.parent;
@@ -297,7 +299,7 @@ export class MetaverseWorld {
             listener = this.registeredHudListeners.get(obj);
           }
           if (listener) {
-            listener();
+            listener(intersect);
             break;
           } else {
             // itereate through all parents until found registered
@@ -308,7 +310,7 @@ export class MetaverseWorld {
                 listener = this.registeredHudListeners.get(parent);
               }
               if (listener) {
-                listener();
+                listener(intersect);
                 break;
               }
               parent = parent.parent;
@@ -339,21 +341,25 @@ export class MetaverseWorld {
     controls.getPosition(position);
 
     nameToValue[
-      "metaverse-camera-position"
+      "mv-camera-position"
     ] = `${position.x},${position.y},${position.z}`;
-    nameToValue[
-      "metaverse-camera-lookat"
-    ] = `${target.x},${target.y},${target.z}`;
+    nameToValue["mv-camera-lookat"] = `${target.x},${target.y},${target.z}`;
   }
 
-  registerInteractiveObject(obj: Object3D, onInteract: () => void) {
+  registerInteractiveObject(
+    obj: Object3D,
+    onInteract: (i: THREE.Intersection) => void
+  ) {
     this.registeredListeners.set(obj, onInteract);
     return () => {
       this.registeredListeners.delete(obj);
     };
   }
 
-  registerInteractiveHudObject(obj: Object3D, onInteract: () => void) {
+  registerInteractiveHudObject(
+    obj: Object3D,
+    onInteract: (i: THREE.Intersection) => void
+  ) {
     this.registeredHudListeners.set(obj, onInteract);
     return () => {
       this.registeredHudListeners.delete(obj);

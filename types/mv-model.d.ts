@@ -11,7 +11,7 @@ export declare class MetaverseModel extends LitElement {
     createRenderRoot(): this;
     connectedCallback(): void;
     disconnectedCallback(): void;
-    render(): import("lit-html").TemplateResult<1>;
+    render(): import("lit").TemplateResult<1>;
 }
 declare global {
     interface HTMLElementTagNameMap {
